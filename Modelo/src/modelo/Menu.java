@@ -5,10 +5,19 @@
  */
 package modelo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Jean Paul
  */
 public class Menu {
     
+    public ArrayList<Producto> productos;
+    public ArrayList<Combo> combos;
+    
+    public Menu(){
+        productos = new ArrayList<Producto>();
+        combos = new ArrayList<Combo>();
+    }
 }

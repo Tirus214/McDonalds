@@ -11,4 +11,13 @@ package modelo;
  */
 public class Producto {
     
+    public String nombre;
+    public int precio;
+    public double tiempoProduccion;
+
+    public Producto(String nombre, int precio, double tiempoProduccion) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.tiempoProduccion = tiempoProduccion;
+    }
 }

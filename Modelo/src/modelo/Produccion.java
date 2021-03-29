@@ -5,18 +5,10 @@
  */
 package modelo;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author Jean Paul
  */
-public class Combo {
-    
-    public ArrayList<Producto> productos;
-
-    public Combo() {
-        this.productos = new ArrayList<Producto>();
-    }
+public class Produccion {
     
 }

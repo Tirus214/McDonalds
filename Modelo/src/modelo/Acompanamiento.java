@@ -9,6 +9,13 @@ package modelo;
  *
  * @author Jean Paul
  */
-public class Acompanamiento {
+public class Acompanamiento extends Producto{
+    
+    public String tipo;     //salado o dulce
+
+    public Acompanamiento(String nombre, int precio, double tiempoProduccion, String tipo) {
+        super(nombre, precio, tiempoProduccion);
+        this.tipo = tipo;
+    }
     
 }
