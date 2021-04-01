@@ -31,7 +31,13 @@ public class Menu {
     void printMenu(){
         System.out.println("Combos: ");
         for (int i = 0; i < combos.size(); i++) {
-            System.out.println("Combo" + (i+1) + ": ");
+            System.out.println("Combo " + (i+1) + ":\n");
+            combos.get(i).toString();
+        }
+        System.out.println("Platos: ");
+        for (int i = 0; i < productos.size(); i++) {
+            System.out.println("Producto " + (i+1) + ":\n");
+            productos.get(i).toString();
             
         }
     }
