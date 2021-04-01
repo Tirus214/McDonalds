@@ -11,7 +11,7 @@ package modelo;
  */
 public class Bebida extends Producto{
     
-    public String tipo;     //frio o caliente
+    public String tipo;     //frio o caliente  
     public int tamano;      //200ml, 250ml o 330ml
 
     public Bebida(String nombre, int precio, double tiempoProduccion, String tipo, int tamano) {
@@ -20,3 +20,4 @@ public class Bebida extends Producto{
         this.tamano = tamano;
     }
 }
+  

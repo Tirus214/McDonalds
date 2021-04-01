@@ -1,0 +1,51 @@
+{
+    "receta0" : {
+        "clasificacion" : "acompanamiento",
+        "nombre" : "Papas fritas",
+        "precio" : 1000,
+        "tiempo" : 2,
+        "tipo" : "salado"
+    },
+
+    "receta1" : {
+        "clasificacion" : "bebida",
+        "nombre" : "Coca cola",
+        "precio" : 700,
+        "tiempo" : 1,
+        "tipo" : "frio",
+        "tamano" : 250
+    },
+
+    "receta2" : {
+        "clasificacion" : "plato fuerte",
+        "nombre" : "Hambuerguesa",
+        "precio" : 1500,
+        "tiempo" : 7,
+        "tamano" : "entero"
+    },
+
+    "receta3" : {
+        "clasificacion" : "plato fuerte",
+        "nombre" : "Arroz cantones",
+        "precio" : 2000,
+        "tiempo" : 10,
+        "tamano" : "medio"
+    },
+
+    "receta4" : {
+        "clasificacion" : "bebida",
+        "nombre" : "Chocolate",
+        "precio" : 800,
+        "tiempo" : 2,
+        "tipo" : "frio",
+        "tamano" : 330
+    },
+
+    "receta5" : {
+        "clasificacion" : "acompanamiento",
+        "nombre" : "Pan de ajo",
+        "precio" : 300,
+        "tiempo" : 2,
+        "tipo" : "salado"
+    }
+}
