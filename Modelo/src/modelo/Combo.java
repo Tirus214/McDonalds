@@ -5,7 +5,6 @@
  */
 package modelo;
 
-import java.util.ArrayList;
 
 /**
  *
@@ -13,10 +12,15 @@ import java.util.ArrayList;
  */
 public class Combo {
     
-    public ArrayList<Producto> productos;
+    protected PlatoFuerte principal;
+    protected Bebida bebida;
+    protected Acompanamiento acomp;
+    protected int precio;
 
     public Combo() {
-        this.productos = new ArrayList<Producto>();
     }
-    
+    @Override
+    public String toString(){
+        return("Plato fuerte: " + principal + "\nBebida: " + bebida + "\nAcompañamiento: " + acomp + "\nPrecio: " + precio);
+    }
 }

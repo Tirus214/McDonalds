@@ -17,4 +17,10 @@ public class PlatoFuerte extends Producto{
         super(nombre, precio, tiempoProduccion);
         this.tamano = tamano;
     }
+    @Override 
+    public String toString(){
+        return(nombre + "\n Precio: " + precio + "\nTiempo de producción: "+ tiempoProduccion + 's' + "\nTamaño: "+ tamano);
+    }
+   
 }
+
