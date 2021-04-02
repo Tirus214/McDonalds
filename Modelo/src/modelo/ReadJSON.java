@@ -9,13 +9,6 @@ package modelo;
  *
  * @author Jean Paul
  */
-public class Produccion {
+public class ReadJSON {
     
-    public Produccion(){
-        
-    }
-    
-    public void producir(Cliente cliente){
-        
-    }
 }

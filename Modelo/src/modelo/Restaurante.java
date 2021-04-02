@@ -5,10 +5,16 @@
  */
 package modelo;
 
-import java.util.ArrayList;
+import java.io.BufferedReader;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.Queue;
+import java.util.LinkedList;
+import jdk.nashorn.internal.parser.JSONParser;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Iterator;
 
 /**
  *
@@ -17,11 +23,77 @@ import java.util.Queue;
 public class Restaurante {
     public Menu menu;
     public Produccion produccion;
-    public ArrayList<Cliente> colaCliente;
+    public LinkedList<Cliente> colaCliente;
+    public LinkedList<Cliente> colaPendientes;
     
     public Restaurante(){
         menu = new Menu();
         produccion = new Produccion();
-        colaCliente = new ArrayList<Cliente>();
+        colaCliente = new LinkedList<Cliente>();
+        colaPendientes = new LinkedList<Cliente>();
+        leerMenu();
+        crearClientes();
+    }
+    
+    public void crearClientes(){
+        int cantClientes = getRandom(20, 5);
+        for (int i = 0; i < cantClientes; i++) {
+            colaCliente.addLast(new Cliente());
+        }
+    }
+    
+    public void leerMenu(){
+        
+        String json = "";
+        try{
+            BufferedReader br = new BufferedReader(new FileReader("src\\modelo\\Recetas.json"));
+            
+            String linea = "";
+            while ((linea = br.readLine()) != null){
+                json += linea;
+            }
+            br.close();
+            
+        } catch(Exception e){
+            System.out.println("Ocurrio un error");
+        }
+        
+        //System.out.println(json);
+        
+        //Gson gson = new Gson();
+    }
+    
+    public static int getRandom(int menor, int mayor){
+        return (int)Math.floor(Math.random()*(mayor - menor + 1) + menor);
+    }
+    
+    public void ordenarProductos(Cliente cliente){
+        int rand = getRandom(menu.productos.size(), 1);
+        for (int i = 0; i < rand; i++) {
+            int rand2 = getRandom(menu.productos.size(), 1);
+            cliente.pedidoProductos.add(menu.productos.get(rand2));
+        }
+    }
+    
+    public void checkearCombos(Cliente cliente){
+        
+    }
+    
+    public void thick(){
+        if(colaCliente.getFirst().contador == 0){
+            colaPendientes.addLast(colaCliente.removeFirst());
+        }else
+            colaCliente.getFirst().decrementarContador();
+        
+        if(!colaPendientes.isEmpty()){
+            ordenarProductos(colaPendientes.getFirst());
+            checkearCombos(colaPendientes.getFirst());
+        
+            produccion.producir(colaPendientes.getFirst());
+            colaPendientes.getFirst().decrementarContadorPaciencia();
+            
+            colaPendientes.removeFirst();
+        }
+        
     }
 }
