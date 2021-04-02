@@ -20,4 +20,25 @@ public class Menu {
         productos = new ArrayList<Producto>();
         combos = new ArrayList<Combo>();
     }
+    
+    void anadirProd(Producto p){
+        productos.add(p);
+    }
+    void anadirComb(Combo b){
+        combos.add(b);
+    }
+    
+    void printMenu(){
+        System.out.println("Combos: ");
+        for (int i = 0; i < combos.size(); i++) {
+            System.out.println("Combo " + (i+1) + ":\n");
+            combos.get(i).toString();
+        }
+        System.out.println("Platos: ");
+        for (int i = 0; i < productos.size(); i++) {
+            System.out.println("Producto " + (i+1) + ":\n");
+            productos.get(i).toString();
+            
+        }
+    }
 }
