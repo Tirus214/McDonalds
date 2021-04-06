@@ -21,7 +21,7 @@ public class Producto {
         this.tiempoProduccion = tiempoProduccion;
     }
     
-    void toString(){
-        System.out.println(nombre + "\n Precio: " + precio + "\nTiempo de producción: "+ tiempoProduccion + 's' + "\nTamaño: "+ tamano);
+    public void Imprimir(){
+        System.out.println(nombre + "\n Precio: " + precio + "\nTiempo de producción: "+ tiempoProduccion + 's');
     }
 }

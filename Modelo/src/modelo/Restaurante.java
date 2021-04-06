@@ -5,16 +5,10 @@
  */
 package modelo;
 
-import java.io.BufferedReader;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.LinkedList;
-import jdk.nashorn.internal.parser.JSONParser;
-
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
-import java.util.Iterator;
+import org.json.simple.*;
+import org.json.simple.parser.JSONParser;
 
 /**
  *
@@ -25,13 +19,16 @@ public class Restaurante {
     public Produccion produccion;
     public LinkedList<Cliente> colaCliente;
     public LinkedList<Cliente> colaPendientes;
+    private jsonClass json;
     
     public Restaurante(){
         menu = new Menu();
         produccion = new Produccion();
         colaCliente = new LinkedList<Cliente>();
         colaPendientes = new LinkedList<Cliente>();
-        leerMenu();
+        json = new jsonClass();
+        json.productos = menu.productos;
+        json.readJson();
         crearClientes();
     }
     
@@ -42,26 +39,7 @@ public class Restaurante {
         }
     }
     
-    public void leerMenu(){
-        
-        String json = "";
-        try{
-            BufferedReader br = new BufferedReader(new FileReader("src\\modelo\\Recetas.json"));
-            
-            String linea = "";
-            while ((linea = br.readLine()) != null){
-                json += linea;
-            }
-            br.close();
-            
-        } catch(Exception e){
-            System.out.println("Ocurrio un error");
-        }
-        
-        //System.out.println(json);
-        
-        //Gson gson = new Gson();
-    }
+     
     
     public static int getRandom(int menor, int mayor){
         return (int)Math.floor(Math.random()*(mayor - menor + 1) + menor);

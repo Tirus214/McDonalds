@@ -17,8 +17,8 @@ public class PlatoFuerte extends Producto{
         super(nombre, precio, tiempoProduccion);
         this.tamano = tamano;
     }
-    @Override 
-    public String toString(){
+
+    public String ImprimirPlato(){
         return(nombre + "\n Precio: " + precio + "\nTiempo de producción: "+ tiempoProduccion + 's' + "\nTamaño: "+ tamano);
     }
    

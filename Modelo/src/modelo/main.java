@@ -18,6 +18,8 @@ public class main {
         
         Restaurante res = new Restaurante();
         
+        res.menu.printMenu();
+        
     }
     
 }
