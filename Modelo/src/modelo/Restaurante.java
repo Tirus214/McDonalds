@@ -45,32 +45,27 @@ public class Restaurante {
         return (int)Math.floor(Math.random()*(mayor - menor + 1) + menor);
     }
     
-    public void ordenarProductos(Cliente cliente){
-        int rand = getRandom(menu.productos.size(), 1);
-        for (int i = 0; i < rand; i++) {
-            int rand2 = getRandom(menu.productos.size(), 1);
-            cliente.pedidoProductos.add(menu.productos.get(rand2));
-        }
-    }
     
-    public void checkearCombos(Cliente cliente){
-        
-    }
+    
+    
     
     public void thick(){
         if(colaCliente.getFirst().contador == 0){
             colaPendientes.addLast(colaCliente.removeFirst());
+            colaPendientes.getFirst().decrementarContadorPaciencia();
         }else
             colaCliente.getFirst().decrementarContador();
         
         if(!colaPendientes.isEmpty()){
-            ordenarProductos(colaPendientes.getFirst());
-            checkearCombos(colaPendientes.getFirst());
+            
+            colaPendientes.getFirst().ordenarProductos(menu);
+            colaPendientes.getFirst().compararCombos(menu);
         
             produccion.producir(colaPendientes.getFirst());
             colaPendientes.getFirst().decrementarContadorPaciencia();
             
             colaPendientes.removeFirst();
+            
         }
         
     }

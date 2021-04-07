@@ -9,6 +9,7 @@ import static java.lang.Thread.sleep;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static modelo.Restaurante.getRandom;
 
 /**
  *
@@ -59,4 +60,52 @@ public class Cliente {
                 contadorPaciencia--;
             }
     }
+    
+    public void ordenarProductos(Menu menu){
+        int rand = getRandom(5, 1);
+        for (int i = 0; i < rand; i++) {
+            int rand2 = getRandom(menu.productos.size(), 1);
+            pedidoProductos.add(menu.productos.get(rand2));
+        }
+        compararCombos(menu);
+    }
+    
+    public void compararCombos(Menu menu){
+        for (int i = 0; i < menu.combos.size(); i++)
+            if (checkearCombo(menu.combos.get(i)))
+                eliminarProductos(menu.combos.get(i));
+    }
+    
+    private boolean checkearCombo(Combo combo){
+        int match = 0;
+        for (int i = 0; i < pedidoProductos.size(); i++) {
+            if(pedidoProductos.get(i).nombre == combo.principal.nombre)
+                match++;
+            else if(pedidoProductos.get(i).nombre == combo.bebida.nombre)
+                match++;
+            else if(pedidoProductos.get(i).nombre == combo.acomp.nombre)
+                match++;
+            
+            if(match == 3){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    private void eliminarProductos(Combo combo){
+        int match = 3;
+        for (int i = 0; i < pedidoProductos.size(); i++) {
+            if(pedidoProductos.get(i).nombre == combo.principal.nombre)
+                match--;
+            else if(pedidoProductos.get(i).nombre == combo.bebida.nombre)
+                match--;
+            else if(pedidoProductos.get(i).nombre == combo.acomp.nombre)
+                match--;
+            
+            if(match == 0)
+                break;
+        }
+    }
+    
  }
