@@ -5,10 +5,30 @@
  */
 package modelo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Mauricio
  */
 public class Tick {
+    int contador;
+    ArrayList<Cliente> clientes; 
+    ArrayList<Producto> productos;
+    public Tick(){
+        clientes = new ArrayList<Cliente>();
+        productos = new ArrayList<Producto>();
+        
+    }
+    public void seguir(){
+        for (int i = 0; i < clientes.size(); i++) {
+            clientes.get(i).contadorPaciencia--;
+            
+        }
+        for (int i = 0; i < productos.size(); i++) {
+            productos.get(i).tiempoProduccion--;
+            
+        }
+    }
     
 }

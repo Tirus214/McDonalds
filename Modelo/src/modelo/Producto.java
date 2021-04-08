@@ -14,7 +14,6 @@ public class Producto {
     public String nombre;
     public int precio;
     public int tiempoProduccion;
-    public int enProceso = 0; //cuanto lleva hecho el producto
 
     public Producto(String nombre, int precio, int tiempoProduccion) {
         this.nombre = nombre;
