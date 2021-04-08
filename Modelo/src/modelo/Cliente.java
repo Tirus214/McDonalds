@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package modelo;
-
+   
 import static java.lang.Thread.sleep;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -19,11 +19,13 @@ public class Cliente {
     
     public ArrayList<Producto> pedidoProductos;
     public ArrayList<Combo> pedidoCombos;
+    public int codigo;
     public int contador;
     public boolean clienteEspecial;
     public int contadorPaciencia;
     
     public Cliente(){
+        this.codigo = 0;
         pedidoCombos = new ArrayList<Combo>();
         pedidoProductos = new ArrayList<Producto>();
         this.contador = Restaurante.getRandom(60, 10);

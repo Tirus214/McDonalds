@@ -20,12 +20,17 @@ public class Restaurante {
     public LinkedList<Cliente> colaCliente;
     public LinkedList<Cliente> colaPendientes;
     private jsonClass json;
+    public int cantIdos;
+    public int cantDesechados;
     
     public Restaurante(){
         menu = new Menu();
         produccion = new Produccion();
         colaCliente = new LinkedList<Cliente>();
         colaPendientes = new LinkedList<Cliente>();
+        cantDesechados = 0;
+        cantIdos = 0;
+        
         json = new jsonClass();
         json.productos = menu.productos;
         json.readJson();
@@ -36,6 +41,7 @@ public class Restaurante {
         int cantClientes = getRandom(20, 5);
         for (int i = 0; i < cantClientes; i++) {
             colaCliente.addLast(new Cliente());
+            colaCliente.getLast().codigo = i;
         }
     }
     
