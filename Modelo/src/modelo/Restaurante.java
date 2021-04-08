@@ -16,16 +16,16 @@ import org.json.simple.parser.JSONParser;
  */
 public class Restaurante {
     public Menu menu;
-    public Produccion produccion;
     public LinkedList<Cliente> colaCliente;
     public LinkedList<Cliente> colaPendientes;
     private jsonClass json;
     public int cantIdos;
     public int cantDesechados;
+    public Tick procesar;
     
     public Restaurante(){
         menu = new Menu();
-        produccion = new Produccion();
+        procesar = new Tick();
         colaCliente = new LinkedList<Cliente>();
         colaPendientes = new LinkedList<Cliente>();
         cantDesechados = 0;
@@ -55,7 +55,7 @@ public class Restaurante {
     
     
     
-    public void thick(){
+    public void thick(){// pasar a procesar.seguir()
         if(colaCliente.getFirst().contador == 0){
             colaPendientes.addLast(colaCliente.removeFirst());
             colaPendientes.getFirst().decrementarContadorPaciencia();
@@ -67,7 +67,7 @@ public class Restaurante {
             colaPendientes.getFirst().ordenarProductos(menu);
             colaPendientes.getFirst().compararCombos(menu);
         
-            produccion.producir(colaPendientes.getFirst());
+            //produccion.producir(colaPendientes.getFirst());
             colaPendientes.getFirst().decrementarContadorPaciencia();
             
             colaPendientes.removeFirst();
