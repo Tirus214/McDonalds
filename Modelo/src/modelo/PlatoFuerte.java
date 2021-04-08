@@ -13,7 +13,7 @@ public class PlatoFuerte extends Producto{
     
     public String tamano;   //entero o mediano
 
-    public PlatoFuerte(String nombre, int precio, double tiempoProduccion, String tamano) {
+    public PlatoFuerte(String nombre, int precio, int tiempoProduccion, String tamano) {
         super(nombre, precio, tiempoProduccion);
         this.tamano = tamano;
     }

@@ -13,9 +13,10 @@ public class Producto {
     
     public String nombre;
     public int precio;
-    public double tiempoProduccion;
+    public int tiempoProduccion;
+    public int enProceso = 0; //cuanto lleva hecho el producto
 
-    public Producto(String nombre, int precio, double tiempoProduccion) {
+    public Producto(String nombre, int precio, int tiempoProduccion) {
         this.nombre = nombre;
         this.precio = precio;
         this.tiempoProduccion = tiempoProduccion;
