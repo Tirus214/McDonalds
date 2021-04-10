@@ -36,25 +36,32 @@ public class Pantalla extends javax.swing.JFrame {
     
     public void imprimirProductos(){
         txfMenu.setText("");
-        txfMenu.append("PRODUCTOS: \n\n");
-        
-        /*
-        for (int i = 0; i < restaurante.menu.productos.size(); i++) {
-            
-            Producto actual = restaurante.menu.productos.get(i);
-            txfMenu.append("Nombre: " + actual.nombre + "\nPrecio: " + actual.precio + "\nTiempo de preparacion: " + actual.tiempoProduccion + "\n");
-            
-            switch(restaurante.menu.productos.get(i).clasificacion){
-                case 1:
-                    actual = (PlatoFuerte) actual;
-                    txfMenu.append("Tamaño: " + );
-            }
+        txfMenu.append("PLATOS FUERTES: \n\n");
+        for (int i = 0; i < restaurante.menu.principales.size(); i++) {
+            txfMenu.append("Nombre: " + restaurante.menu.principales.get(i).nombre + "\n");
+            txfMenu.append("Precio: " + restaurante.menu.principales.get(i).precio + "\n");
+            txfMenu.append("Tiempo de preparacion: " + restaurante.menu.principales.get(i).tiempoProduccion + "\n");
+            txfMenu.append("Tamaño: " + restaurante.menu.principales.get(i).tamano + "\n\n");
         }
-        */
+        txfMenu.append("ACOMPAÑAMIENTOS: \n\n");
+        for (int i = 0; i < restaurante.menu.acompanamientos.size(); i++) {
+            txfMenu.append("Nombre: " + restaurante.menu.acompanamientos.get(i).nombre + "\n");
+            txfMenu.append("Precio: " + restaurante.menu.acompanamientos.get(i).precio + "\n");
+            txfMenu.append("Tiempo de preparacion: " + restaurante.menu.acompanamientos.get(i).tiempoProduccion + "\n");
+            txfMenu.append("Tipo: " + restaurante.menu.acompanamientos.get(i).tipo + "\n\n");
+        }
+        txfMenu.append("BEBIDAS: \n\n");
+        for (int i = 0; i < restaurante.menu.bebidas.size(); i++) {
+            txfMenu.append("Nombre: " + restaurante.menu.bebidas.get(i).nombre + "\n");
+            txfMenu.append("Precio: " + restaurante.menu.bebidas.get(i).precio + "\n");
+            txfMenu.append("Tiempo de preparacion: " + restaurante.menu.bebidas.get(i).tiempoProduccion + "\n");
+            txfMenu.append("Tipo: " + restaurante.menu.bebidas.get(i).tipo + "\n");
+            txfMenu.append("Tamaño: " + restaurante.menu.bebidas.get(i).tamano + "ml\n\n");
+        }
     }
     
     public void imprimirCombos(){
-        txfMenu.append("\n\nCOMBOS: \n\n");
+        txfMenu.append("COMBOS: \n\n");
         
         for (int i = 0; i < restaurante.menu.combos.size(); i++) {
             Combo actual = restaurante.menu.combos.get(i);

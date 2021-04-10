@@ -35,9 +35,15 @@ public class Restaurante {
         cantCorrectos = 0;
         
         json = new jsonClass();
-        //json.productos = menu.productos;
-        json.readJson();
+        setMenu();
         crearClientes();
+    }
+    
+    public void setMenu(){
+        json.readJson();
+        menu.principales = json.principales;
+        menu.acompanamientos = json.acompanamientos;
+        menu.bebidas = json.bebidas;
     }
     
     public void crearClientes(){

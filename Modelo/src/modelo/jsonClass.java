@@ -23,10 +23,14 @@ import org.json.simple.parser.ParseException;
  */
 public class jsonClass {
     
-    public ArrayList<Producto> productos;
+    public ArrayList<PlatoFuerte> principales;
+    public ArrayList<Bebida> bebidas;
+    public ArrayList<Acompanamiento> acompanamientos;
     
     public jsonClass(){
-        productos = new ArrayList<Producto>();
+        principales = new ArrayList<PlatoFuerte>();
+        bebidas = new ArrayList<Bebida>();
+        acompanamientos = new ArrayList<Acompanamiento>();
     }
     
     public void readJson(){
@@ -69,16 +73,16 @@ public class jsonClass {
         switch(Integer.parseInt((String) receta.get("clasificacion"))){
             case 1:
                 String tamano = (String) receta.get("tamano");
-                productos.add(new PlatoFuerte(nombre, precio, tiempo, tamano));
+                principales.add(new PlatoFuerte(nombre, precio, tiempo, tamano));
                 break;
             case 2:
                 String tipo = (String) receta.get("tipo");
-                productos.add(new Acompanamiento(nombre, precio, tiempo, tipo));
+                acompanamientos.add(new Acompanamiento(nombre, precio, tiempo, tipo));
                 break;
             case 3:
                 int tamano2 = Integer.parseInt((String) receta.get("tamano"));
                 String tipo2 = (String) receta.get("tipo");
-                productos.add(new Bebida(nombre, precio, tiempo, tipo2, tamano2));
+                bebidas.add(new Bebida(nombre, precio, tiempo, tipo2, tamano2));
             default:
                 break;
         }
