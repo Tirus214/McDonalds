@@ -21,18 +21,18 @@ public class Restaurante {
     private jsonClass json;
     public int cantIdos;
     public int cantDesechados;
-    public Tick procesar;
+    public Produccion procesar;
     
     public Restaurante(){
         menu = new Menu();
-        procesar = new Tick();
+        procesar = new Produccion();
         colaCliente = new LinkedList<Cliente>();
         colaPendientes = new LinkedList<Cliente>();
         cantDesechados = 0;
         cantIdos = 0;
         
         json = new jsonClass();
-        json.productos = menu.productos;
+        //json.productos = menu.productos;
         json.readJson();
         crearClientes();
     }
@@ -64,7 +64,7 @@ public class Restaurante {
         
         if(!colaPendientes.isEmpty()){
             
-            colaPendientes.getFirst().ordenarProductos(menu);
+            //colaPendientes.getFirst().ordenarProductos(menu);
             colaPendientes.getFirst().compararCombos(menu);
         
             //produccion.producir(colaPendientes.getFirst());

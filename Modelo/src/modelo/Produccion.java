@@ -11,11 +11,11 @@ import java.util.ArrayList;
  *
  * @author Mauricio
  */
-public class Tick {
+public class Produccion {
     int contador;
     ArrayList<Cliente> clientes; 
     ArrayList<Producto> productos;
-    public Tick(){
+    public Produccion(){
         clientes = new ArrayList<Cliente>();
         productos = new ArrayList<Producto>();
         
