@@ -14,11 +14,13 @@ public class Producto {
     public String nombre;
     public int precio;
     public int tiempoProduccion;
+    public int clasificacion;
 
     public Producto(String nombre, int precio, int tiempoProduccion) {
         this.nombre = nombre;
         this.precio = precio;
         this.tiempoProduccion = tiempoProduccion;
+        this.clasificacion = 0;
     }
     
     public void Imprimir(){

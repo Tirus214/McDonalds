@@ -16,6 +16,7 @@ public class Acompanamiento extends Producto{
     public Acompanamiento(String nombre, int precio, int tiempoProduccion, String tipo) {
         super(nombre, precio, tiempoProduccion);
         this.tipo = tipo;
+        this.clasificacion = 2;
     }
     
 }

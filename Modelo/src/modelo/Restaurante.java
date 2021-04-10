@@ -22,6 +22,8 @@ public class Restaurante {
     public int cantIdos;
     public int cantDesechados;
     public Produccion procesar;
+    public int cantCorrectos;
+
     
     public Restaurante(){
         menu = new Menu();
@@ -30,6 +32,7 @@ public class Restaurante {
         colaPendientes = new LinkedList<Cliente>();
         cantDesechados = 0;
         cantIdos = 0;
+        cantCorrectos = 0;
         
         json = new jsonClass();
         //json.productos = menu.productos;

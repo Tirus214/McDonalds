@@ -16,6 +16,8 @@ public class Combo {
     protected Bebida bebida;
     protected Acompanamiento acomp;
     protected int precio;
+    protected int numero;
+
 
     public Combo(PlatoFuerte principal, Bebida bebida, Acompanamiento acomp, int precio) {
         this.principal = principal;
@@ -23,6 +25,7 @@ public class Combo {
         this.acomp = acomp;
         this.precio = precio;
     }
+    
     @Override
     public String toString(){
         return("Plato fuerte: " + principal + "\nBebida: " + bebida + "\nAcompañamiento: " + acomp + "\nPrecio: " + precio);

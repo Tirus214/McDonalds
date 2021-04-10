@@ -18,6 +18,7 @@ public class Bebida extends Producto{
         super(nombre, precio, tiempoProduccion);
         this.tipo = tipo;
         this.tamano = tamano;
+        this.clasificacion = 3;
     }
 }
   
