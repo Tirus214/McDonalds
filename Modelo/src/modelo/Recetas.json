@@ -48,4 +48,48 @@
         "tiempo" : "2",
         "tipo" : "salado"
     }
+    "receta6" : {
+        "clasificacion" : "1",
+        "nombre" : "Costilla",
+        "precio" : "3000",
+        "tiempo" : "8",
+        "tamano" : "grande"
+    }
+    "receta7" : {
+        "clasificacion" : "2",
+        "nombre" : "Taco chino",
+        "precio" : "500",
+        "tiempo" : "2",
+        "tipo" : "salado"
+    }
+    "receta8" : {
+        "clasificacion" : "3",
+        "nombre" : "Agua dulce",
+        "precio" : "500",
+        "tiempo" : "3",
+        "tipo" : "caliente"
+        "tamano" : "400"
+    }
+    "receta9" : {
+        "clasificacion" : "2",
+        "nombre" : "Dona",
+        "precio" : "400",
+        "tiempo" : "2",
+        "tipo" : "dulce"
+    }
+    "receta10" : {
+        "clasificacion" : "3",
+        "nombre" : "Sprite",
+        "precio" : "700",
+        "tiempo" : "2",
+        "tipo" : "frio",
+        "tamano" : "330"
+    }
+    "receta11" : {
+        "clasificacion" : "1",
+        "nombre" : "Casado",
+        "precio" : "2000",
+        "tiempo" : "6",
+        "tamano" : "Medio"
+    }
 }
