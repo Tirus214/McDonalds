@@ -52,7 +52,11 @@ public class Menu {
         int precio = (pf.precio + beb.precio + acomp.precio);
         precio -= precio*0.1;
         
-        Combo combo = new Combo(pf, beb, acomp, precio);
+        int tiempoProduccion = ( pf.tiempoProduccion + beb.tiempoProduccion + acomp.tiempoProduccion );
+        tiempoProduccion -= tiempoProduccion * 0.2;
+        
+        Combo combo = new Combo(pf, beb, acomp, precio, tiempoProduccion);
+        combos.add(combo);
     }
     
     void printMenu(){

@@ -15,24 +15,25 @@ import java.util.ArrayList;
 public class Restaurante {
     public Menu menu;
     public LinkedList<Cliente> colaCliente;
-    public LinkedList<Cliente> colaPendientes;
+    public LinkedList<Producto> colaPendientes;
+    public LinkedList<Combo> combos;
     private jsonClass json;
     public int cantIdos;
     public int cantDesechados;
     public Produccion procesar;
     public int cantCorrectos;
-    public ArrayList<Producto> entregados;
+    public ArrayList<Object> entregados;
 
     
     public Restaurante(){
         menu = new Menu();
         colaCliente = new LinkedList<Cliente>();
-        colaPendientes = new LinkedList<Cliente>();
-        procesar = new Produccion(colaCliente, colaPendientes);
+        colaPendientes = new LinkedList<Producto>();
+        combos = new LinkedList<Combo>();
+        procesar = new Produccion(colaCliente, colaPendientes, combos,  entregados);
         cantDesechados = 0;
         cantIdos = 0;
         cantCorrectos = 0;
-        
         json = new jsonClass();
         setMenu();
         crearClientes();
@@ -62,25 +63,5 @@ public class Restaurante {
     
     
     
-    
-    public void thick(){// pasar a procesar.seguir()
-        if(colaCliente.getFirst().contador == 0){
-            colaPendientes.addLast(colaCliente.removeFirst());
-            colaPendientes.getFirst().decrementarContadorPaciencia();
-        }else
-            colaCliente.getFirst().decrementarContador();
         
-        if(!colaPendientes.isEmpty()){
-            
-            //colaPendientes.getFirst().ordenarProductos(menu);
-            colaPendientes.getFirst().compararCombos(menu);
-        
-            //produccion.producir(colaPendientes.getFirst());
-            colaPendientes.getFirst().decrementarContadorPaciencia();
-            
-            colaPendientes.removeFirst();
-            
-        }
-        
-    }
 }

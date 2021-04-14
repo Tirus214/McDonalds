@@ -6,6 +6,7 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  *
@@ -13,17 +14,18 @@ import java.util.ArrayList;
  */
 public class Produccion {
     int contador;
-    ArrayList<Cliente> clientes; 
-    ArrayList<Producto> productos;
-    public ArrayList<Producto> entregados;
+    LinkedList<Cliente> clientes; 
+    LinkedList<Producto> productos;
+    public ArrayList<Object> entregados;
+    public LinkedList<Combo> combos;
     
-    public Produccion(ArrayList<Cliente> clientes, ArrayList<Producto> productos,ArrayList<Producto> entregados){
+    public Produccion(LinkedList<Cliente> clientes, LinkedList<Producto> productos, LinkedList<Combo> combos, ArrayList<Object> entregados){
         this.clientes = clientes;
         this.productos = productos;
         this.entregados = entregados;
         
     }
-    public void seguir(){
+    public void tick(){
         for (int i = 0; i < clientes.size(); i++) {
             clientes.get(i).contadorPaciencia--;
             
@@ -35,6 +37,17 @@ public class Produccion {
                 entregados.add(productos.get(i));
                 
                 productos.remove(i);
+            }
+            break;
+            
+        }
+        for (int i = 0; i < combos.size(); i++) {
+            combos.get(i).tiempoProduccion--;
+            if (combos.get(i).tiempoProduccion == 0){
+                combos.get(i).entregado = true;
+                entregados.add(combos.get(i));
+                
+                combos.remove(i);
             }
             break;
             

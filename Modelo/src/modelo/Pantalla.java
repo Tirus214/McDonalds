@@ -84,13 +84,13 @@ public class Pantalla extends javax.swing.JFrame {
     public void imprimirColaClientesPendientes(){
         txfColaClientesPendientes.setText("");
         
-        for (int i = 0; i < restaurante.colaPendientes.size(); i++) {
-            if(restaurante.colaPendientes.get(i).clienteEspecial)
-                txfColaClientesPendientes.append("Cliente: " + restaurante.colaPendientes.get(i).codigo +
-                    "\tcontador paciencia: " + restaurante.colaPendientes.get(i).contadorPaciencia + "\n");
+        for (int i = 0; i < restaurante.colaCliente.size(); i++) {
+            if(restaurante.colaCliente.get(i).clienteEspecial)
+                txfColaClientesPendientes.append("Cliente: " + restaurante.colaCliente.get(i).codigo +
+                    "\tcontador paciencia: " + restaurante.colaCliente.get(i).contadorPaciencia + "\n");
             else
-                txfColaClientesPendientes.append("Cliente: " + restaurante.colaPendientes.get(i).codigo +
-                    "\tcontador paciencia: " + restaurante.colaPendientes.get(i).contadorPaciencia + "\n");
+                txfColaClientesPendientes.append("Cliente: " + restaurante.colaCliente.get(i).codigo +
+                    "\tcontador paciencia: " + restaurante.colaCliente.get(i).contadorPaciencia + "\n");
         }
     }
     

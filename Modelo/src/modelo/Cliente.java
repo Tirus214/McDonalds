@@ -110,4 +110,17 @@ public class Cliente {
         }
     }
     
+    protected void revisarPedidos(){
+        for (int i = 0; i < pedidoCombos.size(); i++) {
+            if (pedidoCombos.get(i).entregado)
+                pedidoCombos.remove(i);
+        }
+            
+        for (int i = 0; i < pedidoProductos.size(); i++) {
+            if (pedidoProductos.get(i).entregado)
+                pedidoProductos.remove(i);
+            
+        }
+    }
+    
  }
