@@ -6,9 +6,7 @@
 package modelo;
 
 import java.util.LinkedList;
-import java.io.FileReader;
-import org.json.simple.*;
-import org.json.simple.parser.JSONParser;
+import java.util.ArrayList;
 
 /**
  *
@@ -23,13 +21,14 @@ public class Restaurante {
     public int cantDesechados;
     public Produccion procesar;
     public int cantCorrectos;
+    public ArrayList<Producto> entregados;
 
     
     public Restaurante(){
         menu = new Menu();
-        procesar = new Produccion();
         colaCliente = new LinkedList<Cliente>();
         colaPendientes = new LinkedList<Cliente>();
+        procesar = new Produccion(colaCliente, colaPendientes);
         cantDesechados = 0;
         cantIdos = 0;
         cantCorrectos = 0;

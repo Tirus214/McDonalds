@@ -15,9 +15,12 @@ public class Produccion {
     int contador;
     ArrayList<Cliente> clientes; 
     ArrayList<Producto> productos;
-    public Produccion(){
-        clientes = new ArrayList<Cliente>();
-        productos = new ArrayList<Producto>();
+    public ArrayList<Producto> entregados;
+    
+    public Produccion(ArrayList<Cliente> clientes, ArrayList<Producto> productos,ArrayList<Producto> entregados){
+        this.clientes = clientes;
+        this.productos = productos;
+        this.entregados = entregados;
         
     }
     public void seguir(){
@@ -27,8 +30,16 @@ public class Produccion {
         }
         for (int i = 0; i < productos.size(); i++) {
             productos.get(i).tiempoProduccion--;
+            if (productos.get(i).tiempoProduccion == 0){
+                productos.get(i).entregado = true;
+                entregados.add(productos.get(i));
+                
+                productos.remove(i);
+            }
+            break;
             
         }
+        
     }
     
 }
