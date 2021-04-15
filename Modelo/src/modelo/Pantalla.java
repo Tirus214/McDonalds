@@ -17,11 +17,9 @@ public class Pantalla extends javax.swing.JFrame {
      * Creates new form Pantalla
      */
     public Pantalla() {
-        restaurante = new Restaurante();
+        restaurante = new Restaurante(this);
         initComponents();
-        imprimirElementos();
     }
-    
     
     public void imprimirElementos(){
         lblCantDesechados.setText(restaurante.cantDesechados + "");
@@ -84,13 +82,13 @@ public class Pantalla extends javax.swing.JFrame {
     public void imprimirColaClientesPendientes(){
         txfColaClientesPendientes.setText("");
         
-        for (int i = 0; i < restaurante.colaCliente.size(); i++) {
-            if(restaurante.colaCliente.get(i).clienteEspecial)
-                txfColaClientesPendientes.append("Cliente: " + restaurante.colaCliente.get(i).codigo +
-                    "\tcontador paciencia: " + restaurante.colaCliente.get(i).contadorPaciencia + "\n");
+        for (int i = 0; i < restaurante.procesar.enEspera.size(); i++) {
+            if(restaurante.colaClientePendiente.get(i).clienteEspecial)
+                txfColaClientesPendientes.append("Cliente: " + restaurante.procesar.enEspera.get(i).codigo +
+                    "\tcontador paciencia: " + restaurante.procesar.enEspera.get(i).contadorPaciencia + "\n");
             else
-                txfColaClientesPendientes.append("Cliente: " + restaurante.colaCliente.get(i).codigo +
-                    "\tcontador paciencia: " + restaurante.colaCliente.get(i).contadorPaciencia + "\n");
+                txfColaClientesPendientes.append("Cliente: " + restaurante.procesar.enEspera.get(i).codigo +
+                    "\tcontador paciencia: ∞\n");
         }
     }
     
@@ -213,17 +211,18 @@ public class Pantalla extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(63, 63, 63)
                                 .addComponent(jLabel12)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(81, 81, 81)
+                                .addGap(40, 40, 40)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(95, 95, 95)
                                 .addComponent(jLabel1)
-                                .addGap(171, 171, 171)
-                                .addComponent(jLabel7))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(60, 60, 60)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(42, 42, 42)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel7)
+                                .addGap(109, 109, 109)))))
                 .addGap(35, 35, 35))
             .addGroup(layout.createSequentialGroup()
                 .addGap(307, 307, 307)
@@ -236,13 +235,13 @@ public class Pantalla extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -277,7 +276,7 @@ public class Pantalla extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        imprimirElementos();
+        restaurante.procesar.tick();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

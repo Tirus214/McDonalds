@@ -15,7 +15,8 @@ import java.util.ArrayList;
 public class Restaurante {
     public Menu menu;
     public LinkedList<Cliente> colaCliente;
-    public LinkedList<Producto> colaPendientes;
+    public LinkedList<Cliente> colaClientePendiente;
+    public LinkedList<Producto> colaOrdenesPendientes;
     public LinkedList<Combo> combos;
     private jsonClass json;
     public int cantIdos;
@@ -24,21 +25,26 @@ public class Restaurante {
     public int cantCorrectos;
     public ArrayList<Object> entregados;
     public ArrayList<Cliente> satisfechos;
+    public Pantalla pantalla;
 
     
-    public Restaurante(){
+    public Restaurante(Pantalla pantalla){
         menu = new Menu();
         colaCliente = new LinkedList<Cliente>();
-        colaPendientes = new LinkedList<Producto>();
+        colaClientePendiente = new LinkedList<Cliente>();
+        colaOrdenesPendientes = new LinkedList<Producto>();
         combos = new LinkedList<Combo>();
         satisfechos = new ArrayList<Cliente>();
-        procesar = new Produccion(colaCliente, colaPendientes, combos,  entregados, satisfechos);
+        this.pantalla = pantalla;
+        procesar = new Produccion(colaCliente, colaClientePendiente, colaOrdenesPendientes, combos,  entregados, satisfechos);
+        procesar.pantalla = this.pantalla;
         cantDesechados = 0;
         cantIdos = 0;
         cantCorrectos = 0;
         json = new jsonClass();
         setMenu();
         crearClientes();
+        
     }
     
     public void setMenu(){
@@ -46,6 +52,9 @@ public class Restaurante {
         menu.principales = json.principales;
         menu.acompanamientos = json.acompanamientos;
         menu.bebidas = json.bebidas;
+        for (int i = 0; i < 6; i++) {
+            menu.CrearCombo();
+        }
     }
     
     public void crearClientes(){

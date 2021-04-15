@@ -19,6 +19,7 @@ public class Combo {
     protected int numero;
     protected int tiempoProduccion;
     protected boolean entregado = false;
+    public int codigo;
 
 
     public Combo(PlatoFuerte principal, Bebida bebida, Acompanamiento acomp, int precio, int tiempoProduccion) {

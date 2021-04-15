@@ -18,6 +18,7 @@ public class Menu {
     public ArrayList<Acompanamiento> acompanamientos;
     public ArrayList<Combo> combos;
     Random rand = new Random();
+    
     public Menu(){
         principales = new ArrayList<PlatoFuerte>();
         bebidas = new ArrayList<Bebida>();

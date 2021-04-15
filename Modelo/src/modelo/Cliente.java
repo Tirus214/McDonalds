@@ -63,14 +63,31 @@ public class Cliente {
             }
     }
     
-    /*public void ordenarProductos(Menu menu){
-        int rand = getRandom(5, 1);
+    public void ordenarProductos(Menu menu){
+        int rand = getRandom(2, 1);
         for (int i = 0; i < rand; i++) {
-            int rand2 = getRandom(menu.productos.size(), 1);
-            pedidoProductos.add(menu.productos.get(rand2));
+            pedidoProductos.add(menu.acompanamientos.get(getRandom(menu.acompanamientos.size(), 1)));
+        }
+        rand = getRandom(2, 1);
+        for (int i = 0; i < rand; i++) {
+            pedidoProductos.add(menu.bebidas.get(getRandom(menu.bebidas.size(), 1)));
+        }
+        rand = getRandom(2, 1);
+        for (int i = 0; i < rand; i++) {
+            pedidoProductos.add(menu.principales.get(getRandom(menu.principales.size(), 1)));
         }
         compararCombos(menu);
-    }*/
+        marcarProductos();
+    }
+    
+    private void marcarProductos(){
+        for (int i = 0; i < pedidoProductos.size(); i++) 
+            pedidoProductos.get(i).codigo = this.codigo;
+        
+        for (int i = 0; i < pedidoCombos.size(); i++)
+            pedidoCombos.get(i).codigo = codigo;
+
+    }
     
     public void compararCombos(Menu menu){
         for (int i = 0; i < menu.combos.size(); i++)
