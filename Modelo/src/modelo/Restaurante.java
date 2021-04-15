@@ -23,6 +23,7 @@ public class Restaurante {
     public Produccion procesar;
     public int cantCorrectos;
     public ArrayList<Object> entregados;
+    public ArrayList<Cliente> satisfechos;
 
     
     public Restaurante(){
@@ -30,7 +31,8 @@ public class Restaurante {
         colaCliente = new LinkedList<Cliente>();
         colaPendientes = new LinkedList<Producto>();
         combos = new LinkedList<Combo>();
-        procesar = new Produccion(colaCliente, colaPendientes, combos,  entregados);
+        satisfechos = new ArrayList<Cliente>();
+        procesar = new Produccion(colaCliente, colaPendientes, combos,  entregados, satisfechos);
         cantDesechados = 0;
         cantIdos = 0;
         cantCorrectos = 0;

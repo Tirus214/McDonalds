@@ -15,6 +15,7 @@ public class Producto {
     public int precio;
     public int tiempoProduccion;
     public int clasificacion;
+    public boolean entregado = false;
 
     public Producto(String nombre, int precio, int tiempoProduccion) {
         this.nombre = nombre;

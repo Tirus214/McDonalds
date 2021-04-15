@@ -18,11 +18,13 @@ public class Produccion {
     LinkedList<Producto> productos;
     public ArrayList<Object> entregados;
     public LinkedList<Combo> combos;
+    public ArrayList<Cliente> satisfechos;
     
-    public Produccion(LinkedList<Cliente> clientes, LinkedList<Producto> productos, LinkedList<Combo> combos, ArrayList<Object> entregados){
+    public Produccion(LinkedList<Cliente> clientes, LinkedList<Producto> productos, LinkedList<Combo> combos, ArrayList<Object> entregados, ArrayList<Cliente> satisfechos){
         this.clientes = clientes;
         this.productos = productos;
         this.entregados = entregados;
+        this.satisfechos = satisfechos;
         
     }
     public void tick(){
@@ -50,6 +52,13 @@ public class Produccion {
                 combos.remove(i);
             }
             break;
+        
+        }
+        for (int i = 0; i < clientes.size(); i++) {
+            if (clientes.get(i).pedidoCombos.isEmpty() && clientes.get(i).pedidoProductos.isEmpty()){
+                satisfechos.add(clientes.get(i));
+                clientes.remove(i);
+            }
             
         }
         
