@@ -5,8 +5,11 @@
  */
 package modelo;
 
+import static java.lang.Thread.sleep;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -31,26 +34,32 @@ public class Produccion {
         this.satisfechos = satisfechos;
         this.combos = combos;
     }
+    
     public void tick(){
         
-        clientes.getFirst().contador--;
-        if(clientes.getFirst().contador == 0)
+        if(!clientes.isEmpty()){
+            clientes.getFirst().contador--;
+            if(clientes.getFirst().contador == 0){
                 enEspera.addLast(clientes.removeFirst());
+                addOrden(enEspera.getFirst());
+            }
+        }
         
-        for (int i = 0; i < enEspera.size(); i++)
-            if(clientes.get(i).clienteEspecial){
-                clientes.get(i).contadorPaciencia--;
-                if(clientes.get(i).contadorPaciencia == 0){
+        for (int i = 0; i < enEspera.size(); i++){
+            if(enEspera.get(i).clienteEspecial){
+                enEspera.get(i).contadorPaciencia--;
+                if(enEspera.get(i).contadorPaciencia == 0){
+                    enEspera.remove(i);
                     removerProductos(i);
                 }
-            }            
+            }
+        }
 
         for (int i = 0; i < productos.size(); i++) {
             productos.get(i).tiempoProduccion--;
             if (productos.get(i).tiempoProduccion == 0){
                 productos.get(i).entregado = true;
                 entregados.add(productos.get(i));
-                
                 productos.remove(i);
             }
             break; 
@@ -61,12 +70,11 @@ public class Produccion {
             if (combos.get(i).tiempoProduccion == 0){
                 combos.get(i).entregado = true;
                 entregados.add(combos.get(i));
-                
                 combos.remove(i);
             }
             break;
-        
         }
+        
         for (int i = 0; i < clientes.size(); i++) {
             if (clientes.get(i).pedidoCombos.isEmpty() && clientes.get(i).pedidoProductos.isEmpty()){
                 satisfechos.add(clientes.get(i));
@@ -75,6 +83,11 @@ public class Produccion {
             
         }
         pantalla.imprimirElementos();
+        
+        try {
+            sleep(1000);
+        } catch (InterruptedException ex) {}
+        
         if(!productos.isEmpty() || !combos.isEmpty())
             tick();
     }
@@ -87,5 +100,13 @@ public class Produccion {
         for (int i = 0; i < productos.size(); i++)
             if(productos.get(i).codigo == codigo)
                 productos.remove(i);
+    }
+    
+    public void addOrden(Cliente cliente){
+        for (int i = 0; i < cliente.pedidoProductos.size(); i++)
+            productos.add(cliente.pedidoProductos.get(i));
+        
+        for (int i = 0; i < cliente.pedidoCombos.size(); i++)
+            combos.add(cliente.pedidoCombos.get(i));
     }
 }

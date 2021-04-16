@@ -83,7 +83,7 @@ public class Pantalla extends javax.swing.JFrame {
         txfColaClientesPendientes.setText("");
         
         for (int i = 0; i < restaurante.procesar.enEspera.size(); i++) {
-            if(restaurante.colaClientePendiente.get(i).clienteEspecial)
+            if(restaurante.procesar.enEspera.get(i).clienteEspecial)
                 txfColaClientesPendientes.append("Cliente: " + restaurante.procesar.enEspera.get(i).codigo +
                     "\tcontador paciencia: " + restaurante.procesar.enEspera.get(i).contadorPaciencia + "\n");
             else
@@ -95,7 +95,17 @@ public class Pantalla extends javax.swing.JFrame {
     public void imprimirPedidosPendientes(){
         txfColaOrdenesPendientes.setText("");
         
+        for (int i = 0; i < restaurante.procesar.productos.size(); i++) {
+            txfColaOrdenesPendientes.append("Orden: " + restaurante.procesar.productos.get(i).codigo + "\n");
+            txfColaOrdenesPendientes.append("Nombre: " + restaurante.procesar.productos.get(i).nombre + "\n");
+            txfColaOrdenesPendientes.append("Tiempo: " + restaurante.procesar.productos.get(i).tiempoProduccion + "\n\n");
+        }
         
+        for (int i = 0; i < restaurante.procesar.combos.size(); i++) {
+            txfColaOrdenesPendientes.append("Orden: " + restaurante.procesar.combos.get(i).codigo + "\n");
+            txfColaOrdenesPendientes.append("Combo: " + restaurante.procesar.combos.get(i).numero + "\n");
+            txfColaOrdenesPendientes.append("Tiempo: " + restaurante.procesar.combos.get(i).tiempoProduccion + "\n\n");
+        }
     }
     
     
