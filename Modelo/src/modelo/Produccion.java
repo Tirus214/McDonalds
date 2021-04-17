@@ -24,6 +24,7 @@ public class Produccion {
     public LinkedList<Combo> combos;
     public ArrayList<Cliente> satisfechos;
     public Pantalla pantalla;
+    public int tamanoUsado = 0;
     
     public Produccion(LinkedList<Cliente> clientes, LinkedList<Cliente> enEspera,LinkedList<Producto> productos, LinkedList<Combo> combos, 
             ArrayList<Object> entregados, ArrayList<Cliente> satisfechos){
@@ -63,24 +64,25 @@ public class Produccion {
     }
     
     public void procesar(){
+        
         if(!productos.isEmpty()){
             for (int i = 0; i < productos.size(); i++) {
-                if(productos.get(i).tiempoProduccion > 0)
+                tamanoUsado += productos.get(i).valor;
+                if(productos.get(i).tiempoProduccion > 0 && tamanoUsado <= 10)
                     productos.get(i).tiempoProduccion--;
                 else{
                     productos.get(i).entregado = true;
                     productos.remove(i);
                 }   
             }
+            tamanoUsado = 0;
         }
-        if(!combos.isEmpty()){
-            for (int i = 0; i < combos.size(); i++) {
-                if(combos.get(i).tiempoProduccion > 0)
-                    combos.get(i).tiempoProduccion--;
-                else{
-                    combos.get(i).entregado = true;
-                    combos.remove(i);
-                } 
+        if(!combos.isEmpty() && productos.isEmpty()){
+            if(combos.getFirst().tiempoProduccion > 0)
+                    combos.getFirst().tiempoProduccion--;
+            else{
+                 combos.getFirst().entregado = true;
+                 combos.getFirst();
             }
         }
     }
