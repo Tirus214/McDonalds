@@ -85,8 +85,9 @@ public class Restaurante {
             
             while (colaCliente.getFirst().contador > 0){
                 esperar();
-                colaCliente.getFirst().contador -= 1;
+                colaCliente.getFirst().contador--;
                 pantalla.imprimirElementos();
+                System.out.println("contador > 0 es true siempre, linea 86 de restaurante");
             }   
             
             colaClientePendiente.addLast(colaCliente.removeFirst());
