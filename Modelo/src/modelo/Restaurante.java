@@ -66,7 +66,7 @@ public class Restaurante {
     }
     
     public void crearClientes(){
-        int cantClientes = getRandom(20, 5);
+        int cantClientes = getRandom(5,20);
         for (int i = 0; i < cantClientes; i++) {
             colaCliente.addLast(new Cliente());
             colaCliente.getLast().codigo = i;
@@ -87,7 +87,6 @@ public class Restaurante {
                 esperar();
                 colaCliente.getFirst().contador -= 1;
                 pantalla.imprimirElementos();
-                pantalla.repaint();
             }   
             
             colaClientePendiente.addLast(colaCliente.removeFirst());
@@ -107,13 +106,17 @@ public class Restaurante {
                         colaClientePendiente.getFirst().finalizado = true;
                         produccion.eliminarOrden(colaClientePendiente.getFirst());
                         colaClientePendiente.removeFirst();
+                        cantIdos++;
                         return;
                     }
                 }
                 
                 produccion.procesar();
-                if(colaClientePendiente.getFirst().revisarPedidos())
+                if(colaClientePendiente.getFirst().revisarPedidos()){
                     colaClientePendiente.getFirst().finalizado = true;
+                    produccion.eliminarOrden(colaClientePendiente.getFirst());
+                    cantCorrectos++;
+                }                  
                 
                 pantalla.imprimirElementos();
             }

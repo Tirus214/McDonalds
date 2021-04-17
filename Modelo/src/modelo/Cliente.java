@@ -29,7 +29,7 @@ public class Cliente {
         this.codigo = 0;
         pedidoCombos = new ArrayList<Combo>();
         pedidoProductos = new ArrayList<Producto>();
-        this.contador = Restaurante.getRandom(60, 10);
+        this.contador = Restaurante.getRandom(10, 60);
         this.finalizado = false;
         isEspecial();
     }
@@ -38,7 +38,7 @@ public class Cliente {
         int rand = (int)Math.floor(Math.random()*(3));
         if(rand == 0){
             this.clienteEspecial = true;
-            this.contadorPaciencia = Restaurante.getRandom(60, 10);
+            this.contadorPaciencia = Restaurante.getRandom(10, 60);
         }
         else {
             this.clienteEspecial = false;
@@ -46,37 +46,19 @@ public class Cliente {
         }
     }
     
-    public void decrementarContador(){
-        for (int i = 0; i < contador; i++) {
-            try {
-                sleep(1000);
-            } catch (InterruptedException ex) {}
-            contador--;
-        }
-    }
-    
-    public void decrementarContadorPaciencia(){
-        if(clienteEspecial)
-            for (int i = 0; i < contadorPaciencia; i++) {
-            try {
-                sleep(1000);
-            } catch (InterruptedException ex) {}
-                contadorPaciencia--;
-            }
-    }
     
     public void ordenarProductos(Menu menu){
-        int rand = getRandom(2, 1);
+        int rand = getRandom(1,4);
         for (int i = 0; i < rand; i++) {
-            pedidoProductos.add(menu.acompanamientos.get(getRandom(menu.acompanamientos.size()-1, 0)));
+            pedidoProductos.add(menu.acompanamientos.get(getRandom(0, menu.acompanamientos.size()-1)));
         }
-        rand = getRandom(2, 1);
+        rand = getRandom(1,4);
         for (int i = 0; i < rand; i++) {
-            pedidoProductos.add(menu.bebidas.get(getRandom(menu.bebidas.size()-1, 0)));
+            pedidoProductos.add(menu.bebidas.get(getRandom(0, menu.bebidas.size()-1)));
         }
-        rand = getRandom(2, 1);
+        rand = getRandom(1,4);
         for (int i = 0; i < rand; i++) {
-            pedidoProductos.add(menu.principales.get(getRandom(menu.principales.size()-1, 0)));
+            pedidoProductos.add(menu.principales.get(getRandom(0, menu.principales.size()-1)));
         }
         compararCombos(menu);
         marcarProductos();
@@ -87,7 +69,7 @@ public class Cliente {
             pedidoProductos.get(i).codigo = this.codigo;
         
         for (int i = 0; i < pedidoCombos.size(); i++)
-            pedidoCombos.get(i).codigo = codigo;
+            pedidoCombos.get(i).codigo = this.codigo;
 
     }
     

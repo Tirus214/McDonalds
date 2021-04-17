@@ -82,7 +82,7 @@ public class Pantalla extends javax.swing.JFrame {
         for (int i = 0; i < restaurante.colaCliente.size(); i++){
             txfColaClientes.append("Cliente: " + restaurante.colaCliente.get(i).codigo +
                     "\tcontador: " + restaurante.colaCliente.get(i).contador + "\n");
-            //System.out.println(restaurante.colaCliente.get(i).contador);
+            System.out.println(restaurante.colaCliente.get(i).codigo + " " + restaurante.colaCliente.get(i).contador);
         }
             
     }

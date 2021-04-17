@@ -41,20 +41,18 @@ public class Menu {
         PlatoFuerte pf;
         Bebida beb;
         Acompanamiento acomp;
-        int toAdd = rand.nextInt(principales.size());
+        int toAdd = Restaurante.getRandom(0, principales.size()-1);
         pf = principales.get(toAdd);
         
-        toAdd = rand.nextInt(bebidas.size());
+        toAdd = Restaurante.getRandom(0, bebidas.size()-1);
         beb = bebidas.get(toAdd);
         
-        toAdd = rand.nextInt(principales.size());
+        toAdd = Restaurante.getRandom(0, acompanamientos.size()-1);
         acomp = acompanamientos.get(toAdd);
         
-        int precio = (pf.precio + beb.precio + acomp.precio);
-        precio -= precio*0.1;
+        int precio = (int) ((pf.precio + beb.precio + acomp.precio)*0.9);
         
         int tiempoProduccion = ( pf.tiempoProduccion + beb.tiempoProduccion + acomp.tiempoProduccion );
-        tiempoProduccion -= tiempoProduccion * 0.2;
         
         Combo combo = new Combo(pf, beb, acomp, precio, tiempoProduccion);
         combos.add(combo);

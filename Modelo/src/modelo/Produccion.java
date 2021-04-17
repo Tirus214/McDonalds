@@ -44,7 +44,6 @@ public class Produccion {
     public void agregarOrden(Cliente clienteActual){
         for (int i = 0; i < clienteActual.pedidoProductos.size(); i++){
             productos.add(clienteActual.pedidoProductos.get(i));
-            System.out.println(i);
         }
             
         
