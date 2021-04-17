@@ -32,7 +32,6 @@ public class Pantalla extends javax.swing.JFrame {
         imprimirColaClientes();
         imprimirColaClientesPendientes();
         imprimirPedidosPendientes();
-        this.repaint();
     }  
     
     public void imprimirProductos(){

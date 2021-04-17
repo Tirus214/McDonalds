@@ -87,7 +87,7 @@ public class Restaurante {
                 esperar();
                 colaCliente.getFirst().contador--;
                 pantalla.imprimirElementos();
-                System.out.println("contador > 0 es true siempre, linea 86 de restaurante");
+                //System.out.println("contador > 0 es true siempre, linea 86 de restaurante");
             }   
             
             colaClientePendiente.addLast(colaCliente.removeFirst());
@@ -98,28 +98,36 @@ public class Restaurante {
         
         if(!colaClientePendiente.isEmpty()){
             
-            while (!colaClientePendiente.getFirst().finalizado){
+            while (!colaClientePendiente.isEmpty() && !colaClientePendiente.getFirst().finalizado){
+                pantalla.imprimirElementos();
+                System.out.println("hola");
                 esperar();
                 //si es cliente especial...
                 if(colaClientePendiente.getFirst().clienteEspecial){
-                    colaClientePendiente.getFirst().contador--;
-                    if(colaClientePendiente.getFirst().contador <= 0){
+                    colaClientePendiente.getFirst().contadorPaciencia--;
+                    if(colaClientePendiente.getFirst().contadorPaciencia == 0){
                         colaClientePendiente.getFirst().finalizado = true;
                         produccion.eliminarOrden(colaClientePendiente.getFirst());
                         colaClientePendiente.removeFirst();
                         cantIdos++;
+                        pantalla.imprimirElementos();
                         return;
                     }
                 }
-                
+                pantalla.imprimirElementos();
+                System.out.println("Cantidad de combos: " + colaClientePendiente.getFirst().pedidoCombos.size());
                 produccion.procesar();
+                pantalla.imprimirElementos();
+                
                 if(colaClientePendiente.getFirst().revisarPedidos()){
                     colaClientePendiente.getFirst().finalizado = true;
                     produccion.eliminarOrden(colaClientePendiente.getFirst());
+                    colaClientePendiente.removeFirst();
                     cantCorrectos++;
                 }                  
-                
                 pantalla.imprimirElementos();
+                
+                if(colaCliente.isEmpty()) return;
             }
         }
     }

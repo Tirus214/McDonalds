@@ -43,11 +43,9 @@ public class Produccion {
     
     public void agregarOrden(Cliente clienteActual){
         for (int i = 0; i < clienteActual.pedidoProductos.size(); i++){
-            productos.add(clienteActual.pedidoProductos.get(i));
+            productos.add(clienteActual.pedidoProductos.get(i)); 
         }
-            
-        
-            
+   
         for (int i = 0; i < clienteActual.pedidoCombos.size(); i++)
             combos.add(clienteActual.pedidoCombos.get(i));
     }
@@ -65,29 +63,34 @@ public class Produccion {
     public void procesar(){
         
         if(!productos.isEmpty()){
+            System.out.println("productos: " + productos.size());
             for (int i = 0; i < productos.size(); i++) {
                 tamanoUsado += productos.get(i).valor;
                 if(productos.get(i).tiempoProduccion > 0 && tamanoUsado <= 10)
                     productos.get(i).tiempoProduccion--;
-                else{
+                else if(productos.get(i).tiempoProduccion <= 0){
                     productos.get(i).entregado = true;
                     productos.remove(i);
                 }   
             }
             tamanoUsado = 0;
         }
+        
+        System.out.println("combos: " + combos.size());
         if(!combos.isEmpty() && productos.isEmpty()){
+            System.out.println("Numero" + combos.getFirst().numero);
             if(combos.getFirst().tiempoProduccion > 0)
-                    combos.getFirst().tiempoProduccion--;
+                combos.getFirst().tiempoProduccion--;
             else{
-                 combos.getFirst().entregado = true;
-                 combos.getFirst();
+                combos.getFirst().entregado = true;
+                combos.removeFirst();
             }
+            
         }
     }
     
+    
     public void tick(){
-        
         if(!clientes.isEmpty()){
             clientes.getFirst().contador--;
             if(clientes.getFirst().contador == 0){

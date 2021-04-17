@@ -35,7 +35,7 @@ public class Cliente {
     }
     
     public void isEspecial(){
-        int rand = (int)Math.floor(Math.random()*(3));
+        int rand = getRandom(0, 4);
         if(rand == 0){
             this.clienteEspecial = true;
             this.contadorPaciencia = Restaurante.getRandom(10, 60);
@@ -48,17 +48,17 @@ public class Cliente {
     
     
     public void ordenarProductos(Menu menu){
-        int rand = getRandom(1,4);
+        int rand = getRandom(1,2);
         for (int i = 0; i < rand; i++) {
             Acompanamiento a1 = menu.acompanamientos.get(getRandom(0, menu.acompanamientos.size()-1)).clonacion();
             pedidoProductos.add(a1);
         }
-        rand = getRandom(1,4);
+        rand = Restaurante.getRandom(1,2);
         for (int i = 0; i < rand; i++) {
             Bebida b1 = menu.bebidas.get(getRandom(0, menu.bebidas.size()-1)).clonacion();
             pedidoProductos.add(b1);
         }
-        rand = getRandom(1,4);
+        rand = getRandom(1,2);
         for (int i = 0; i < rand; i++) {
             PlatoFuerte p1 = menu.principales.get(getRandom(0, menu.principales.size()-1)).clonacion();
             pedidoProductos.add(p1);
@@ -95,9 +95,7 @@ public class Cliente {
             else if(pedidoProductos.get(i).nombre == combo.acomp.nombre)
                 match++;
             
-            if(match == 3){
-                return true;
-            }
+            if(match == 3) return true;
         }
         return false;
     }
@@ -105,15 +103,21 @@ public class Cliente {
     private void eliminarProductos(Combo combo){
         int match = 3;
         for (int i = 0; i < pedidoProductos.size(); i++) {
-            if(pedidoProductos.get(i).nombre == combo.principal.nombre)
+            if(pedidoProductos.get(i).nombre == combo.principal.nombre){
+                pedidoProductos.remove(i);
                 match--;
-            else if(pedidoProductos.get(i).nombre == combo.bebida.nombre)
+            }
+            else if(pedidoProductos.get(i).nombre == combo.bebida.nombre){
+                pedidoProductos.remove(i);
                 match--;
-            else if(pedidoProductos.get(i).nombre == combo.acomp.nombre)
+            }
+            else if(pedidoProductos.get(i).nombre == combo.acomp.nombre){
+                pedidoProductos.remove(i);
                 match--;
+            }
             
             if(match == 0)
-                break;
+                return;
         }
     }
     

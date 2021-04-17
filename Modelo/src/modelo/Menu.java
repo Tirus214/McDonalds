@@ -17,13 +17,14 @@ public class Menu {
     public ArrayList<Bebida> bebidas;
     public ArrayList<Acompanamiento> acompanamientos;
     public ArrayList<Combo> combos;
-    Random rand = new Random();
+    public int numCombo;
     
     public Menu(){
         principales = new ArrayList<PlatoFuerte>();
         bebidas = new ArrayList<Bebida>();
         acompanamientos = new ArrayList<Acompanamiento>();
         combos = new ArrayList<Combo>();
+        numCombo = 0;
     }
     
     void anadirPrin(PlatoFuerte p){
@@ -55,6 +56,8 @@ public class Menu {
         int tiempoProduccion = ( pf.tiempoProduccion + beb.tiempoProduccion + acomp.tiempoProduccion );
         
         Combo combo = new Combo(pf, beb, acomp, precio, tiempoProduccion);
+        combo.numero = numCombo;
+        numCombo++;
         combos.add(combo);
     }
     
