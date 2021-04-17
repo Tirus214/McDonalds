@@ -47,18 +47,21 @@ public class Cliente {
     }
     
     
-    public void ordenarProductos(Menu menu){
+    public void ordenarProductos(Menu menu) throws CloneNotSupportedException{
         int rand = getRandom(1,4);
         for (int i = 0; i < rand; i++) {
-            pedidoProductos.add(menu.acompanamientos.get(getRandom(0, menu.acompanamientos.size()-1)));
+            Acompanamiento a1 = menu.acompanamientos.get(getRandom(0, menu.acompanamientos.size()-1)).clonacion();
+            pedidoProductos.add(a1);
         }
         rand = getRandom(1,4);
         for (int i = 0; i < rand; i++) {
-            pedidoProductos.add(menu.bebidas.get(getRandom(0, menu.bebidas.size()-1)));
+            Bebida b1 = menu.bebidas.get(getRandom(0, menu.bebidas.size()-1)).clonacion();
+            pedidoProductos.add(b1);
         }
         rand = getRandom(1,4);
         for (int i = 0; i < rand; i++) {
-            pedidoProductos.add(menu.principales.get(getRandom(0, menu.principales.size()-1)));
+            PlatoFuerte p1 = menu.principales.get(getRandom(0, menu.principales.size()-1)).clonacion();
+            pedidoProductos.add(p1);
         }
         compararCombos(menu);
         marcarProductos();
@@ -75,8 +78,11 @@ public class Cliente {
     
     public void compararCombos(Menu menu){
         for (int i = 0; i < menu.combos.size(); i++)
-            if (checkearCombo(menu.combos.get(i)))
+            if (checkearCombo(menu.combos.get(i))){
+                pedidoCombos.add(menu.combos.get(i).clonacion());
                 eliminarProductos(menu.combos.get(i));
+            }
+                
     }
     
     private boolean checkearCombo(Combo combo){

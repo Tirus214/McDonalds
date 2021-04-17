@@ -9,7 +9,7 @@ package modelo;
  *
  * @author Jean Paul
  */
-public class Producto {
+public class Producto implements Cloneable{
     
     public String nombre;
     public int precio;
@@ -26,6 +26,11 @@ public class Producto {
         this.tiempoProduccion = tiempoProduccion;
         this.clasificacion = 0;
     }
+    
+    public Object clone() throws CloneNotSupportedException{
+        return super.clone();
+    }
+   
     
     public void Imprimir(){
         System.out.println(nombre + "\n Precio: " + precio + "\nTiempo de producción: "+ tiempoProduccion + 's');

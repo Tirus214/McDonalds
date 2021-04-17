@@ -10,7 +10,7 @@ package modelo;
  *
  * @author Jean Paul
  */
-public class Combo {
+public class Combo implements Cloneable{
     
     protected PlatoFuerte principal;
     protected Bebida bebida;
@@ -28,6 +28,10 @@ public class Combo {
         this.acomp = acomp;
         this.precio = precio;
         this.tiempoProduccion = tiempoProduccion;
+    }
+    
+    public Combo clonacion(){
+        return new Combo(principal.clonacion(), bebida.clonacion(), acomp.clonacion(), precio, tiempoProduccion);
     }
     
     @Override

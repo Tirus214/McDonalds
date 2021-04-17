@@ -21,4 +21,7 @@ public class Acompanamiento extends Producto{
         this.clasificacion = 2;
     }
     
+    public Acompanamiento clonacion(){
+        return new Acompanamiento(nombre, precio, tiempoProduccion, tipo);
+    }
 }

@@ -22,5 +22,9 @@ public class Bebida extends Producto{
         this.tamano = tamano;
         this.clasificacion = 3;
     }
+    
+    public Bebida clonacion(){
+        return new Bebida(nombre, precio, tiempoProduccion, tipo, tamano);
+    }
 }
   

@@ -23,5 +23,8 @@ public class PlatoFuerte extends Producto{
         return(nombre + "\n Precio: " + precio + "\nTiempo de producción: "+ tiempoProduccion + 's' + "\nTamaño: "+ tamano);
     }
    
+    public PlatoFuerte clonacion(){
+        return new PlatoFuerte(nombre, precio, tiempoProduccion, tamano);
+    }
 }
 
