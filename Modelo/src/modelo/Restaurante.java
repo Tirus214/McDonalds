@@ -80,7 +80,7 @@ public class Restaurante {
     }
     
     
-    public void tick() throws CloneNotSupportedException{
+    public void tick(){
         if(!colaCliente.isEmpty()){
             
             while (colaCliente.getFirst().contador > 0){

@@ -47,7 +47,7 @@ public class Cliente {
     }
     
     
-    public void ordenarProductos(Menu menu) throws CloneNotSupportedException{
+    public void ordenarProductos(Menu menu){
         int rand = getRandom(1,4);
         for (int i = 0; i < rand; i++) {
             Acompanamiento a1 = menu.acompanamientos.get(getRandom(0, menu.acompanamientos.size()-1)).clonacion();
