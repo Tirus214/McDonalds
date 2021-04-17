@@ -5,6 +5,8 @@
  */
 package modelo;
 
+import java.awt.ComponentOrientation;
+
 /**
  *
  * @author Jean Paul
@@ -30,6 +32,7 @@ public class Pantalla extends javax.swing.JFrame {
         imprimirColaClientes();
         imprimirColaClientesPendientes();
         imprimirPedidosPendientes();
+        this.repaint();
     }  
     
     public void imprimirProductos(){
@@ -70,41 +73,45 @@ public class Pantalla extends javax.swing.JFrame {
             txfMenu.append("Precio: " + actual.precio + "\n\n");
         }
     }
+
     
     public void imprimirColaClientes(){
+        txfColaClientes.removeAll();
         txfColaClientes.setText("");
         
-        for (int i = 0; i < restaurante.colaCliente.size(); i++)
+        for (int i = 0; i < restaurante.colaCliente.size(); i++){
             txfColaClientes.append("Cliente: " + restaurante.colaCliente.get(i).codigo +
                     "\tcontador: " + restaurante.colaCliente.get(i).contador + "\n");
+            //System.out.println(restaurante.colaCliente.get(i).contador);
+        }
+            
     }
     
     public void imprimirColaClientesPendientes(){
         txfColaClientesPendientes.setText("");
         
-        for (int i = 0; i < restaurante.procesar.enEspera.size(); i++) {
-            if(restaurante.procesar.enEspera.get(i).clienteEspecial)
-                txfColaClientesPendientes.append("Cliente: " + restaurante.procesar.enEspera.get(i).codigo +
-                    "\tcontador paciencia: " + restaurante.procesar.enEspera.get(i).contadorPaciencia + "\n");
+        for (int i = 0; i < restaurante.colaClientePendiente.size(); i++) {
+            if(restaurante.colaClientePendiente.get(i).clienteEspecial)
+                txfColaClientesPendientes.append("Cliente: " + restaurante.colaClientePendiente.get(i).codigo +
+                    "\tcontador paciencia: " + restaurante.colaClientePendiente.get(i).contadorPaciencia + "\n");
             else
-                txfColaClientesPendientes.append("Cliente: " + restaurante.procesar.enEspera.get(i).codigo +
+                txfColaClientesPendientes.append("Cliente: " + restaurante.colaClientePendiente.get(i).codigo +
                     "\tcontador paciencia: ∞\n");
         }
     }
     
     public void imprimirPedidosPendientes(){
         txfColaOrdenesPendientes.setText("");
-        
-        for (int i = 0; i < restaurante.procesar.productos.size(); i++) {
-            txfColaOrdenesPendientes.append("Orden: " + restaurante.procesar.productos.get(i).codigo + "\n");
-            txfColaOrdenesPendientes.append("Nombre: " + restaurante.procesar.productos.get(i).nombre + "\n");
-            txfColaOrdenesPendientes.append("Tiempo: " + restaurante.procesar.productos.get(i).tiempoProduccion + "\n\n");
+        for (int i = 0; i < restaurante.produccion.productos.size(); i++) {
+            txfColaOrdenesPendientes.append("Orden: " + restaurante.produccion.productos.get(i).codigo + "\n");
+            txfColaOrdenesPendientes.append("Nombre: " + restaurante.produccion.productos.get(i).nombre + "\n");
+            txfColaOrdenesPendientes.append("Tiempo: " + restaurante.produccion.productos.get(i).tiempoProduccion + "\n\n");
         }
         
-        for (int i = 0; i < restaurante.procesar.combos.size(); i++) {
-            txfColaOrdenesPendientes.append("Orden: " + restaurante.procesar.combos.get(i).codigo + "\n");
-            txfColaOrdenesPendientes.append("Combo: " + restaurante.procesar.combos.get(i).numero + "\n");
-            txfColaOrdenesPendientes.append("Tiempo: " + restaurante.procesar.combos.get(i).tiempoProduccion + "\n\n");
+        for (int i = 0; i < restaurante.produccion.combos.size(); i++) {
+            txfColaOrdenesPendientes.append("Orden: " + restaurante.produccion.combos.get(i).codigo + "\n");
+            txfColaOrdenesPendientes.append("Combo: " + restaurante.produccion.combos.get(i).numero + "\n");
+            txfColaOrdenesPendientes.append("Tiempo: " + restaurante.produccion.combos.get(i).tiempoProduccion + "\n\n");
         }
     }
     
@@ -244,7 +251,7 @@ public class Pantalla extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel7)
@@ -262,9 +269,9 @@ public class Pantalla extends javax.swing.JFrame {
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(67, 67, 67)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel14)
                             .addComponent(lblCantCorrectos))
@@ -276,9 +283,7 @@ public class Pantalla extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
                             .addComponent(lblCantDesechados)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(87, 87, 87))
         );
 
@@ -286,7 +291,7 @@ public class Pantalla extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        restaurante.procesar.tick();
+        restaurante.tick();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

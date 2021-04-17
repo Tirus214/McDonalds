@@ -5,8 +5,11 @@
  */
 package modelo;
 
+import static java.lang.Thread.sleep;
 import java.util.LinkedList;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -26,6 +29,8 @@ public class Restaurante {
     public ArrayList<Object> entregados;
     public ArrayList<Cliente> satisfechos;
     public Pantalla pantalla;
+    
+    public Produccion produccion;
 
     
     public Restaurante(Pantalla pantalla){
@@ -41,6 +46,9 @@ public class Restaurante {
         cantDesechados = 0;
         cantIdos = 0;
         cantCorrectos = 0;
+        
+        produccion = new Produccion(colaOrdenesPendientes, combos);
+        
         json = new jsonClass();
         setMenu();
         crearClientes();
@@ -72,7 +80,52 @@ public class Restaurante {
     }
     
     
-    
-    
+    public void tick(){
+        if(!colaCliente.isEmpty()){
+            
+            while (colaCliente.getFirst().contador > 0){
+                esperar();
+                colaCliente.getFirst().contador -= 1;
+                pantalla.imprimirElementos();
+                pantalla.repaint();
+            }   
+            
+            colaClientePendiente.addLast(colaCliente.removeFirst());
+            colaClientePendiente.getFirst().ordenarProductos(menu);
+            produccion.agregarOrden(colaClientePendiente.getFirst());
+            pantalla.imprimirElementos();
+        }
         
+        if(!colaClientePendiente.isEmpty()){
+            
+            while (!colaClientePendiente.getFirst().finalizado){
+                esperar();
+                //si es cliente especial...
+                if(colaClientePendiente.getFirst().clienteEspecial){
+                    colaClientePendiente.getFirst().contador--;
+                    if(colaClientePendiente.getFirst().contador <= 0){
+                        colaClientePendiente.getFirst().finalizado = true;
+                        produccion.eliminarOrden(colaClientePendiente.getFirst());
+                        colaClientePendiente.removeFirst();
+                        return;
+                    }
+                }
+                
+                produccion.procesar();
+                if(colaClientePendiente.getFirst().revisarPedidos())
+                    colaClientePendiente.getFirst().finalizado = true;
+                
+                pantalla.imprimirElementos();
+            }
+        }
+    }
+    
+    
+    
+    public static void esperar(){
+        try {
+            sleep(100);
+        } catch (InterruptedException ex) {
+        }
+    }
 }

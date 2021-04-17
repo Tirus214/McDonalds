@@ -35,6 +35,56 @@ public class Produccion {
         this.combos = combos;
     }
     
+    public Produccion(LinkedList<Producto> productos, LinkedList<Combo> combos){
+        this.productos = productos;
+        this.combos = combos;
+    }
+    
+    public void agregarOrden(Cliente clienteActual){
+        for (int i = 0; i < clienteActual.pedidoProductos.size(); i++){
+            productos.add(clienteActual.pedidoProductos.get(i));
+            System.out.println(i);
+        }
+            
+        
+            
+        for (int i = 0; i < clienteActual.pedidoCombos.size(); i++)
+            combos.add(clienteActual.pedidoCombos.get(i));
+    }
+    
+    public void eliminarOrden(Cliente clienteActual){
+        for (int i = 0; i < productos.size(); i++)
+            if(productos.get(i).codigo == clienteActual.codigo)
+                productos.remove(i);
+            
+        for (int i = 0; i < combos.size(); i++)
+            if(combos.get(i).codigo == clienteActual.codigo)
+                combos.remove(i);
+    }
+    
+    public void procesar(){
+        if(!productos.isEmpty()){
+            for (int i = 0; i < productos.size(); i++) {
+                if(productos.get(i).tiempoProduccion > 0)
+                    productos.get(i).tiempoProduccion--;
+                else{
+                    productos.get(i).entregado = true;
+                    productos.remove(i);
+                }   
+            }
+        }
+        if(!combos.isEmpty()){
+            for (int i = 0; i < combos.size(); i++) {
+                if(combos.get(i).tiempoProduccion > 0)
+                    combos.get(i).tiempoProduccion--;
+                else{
+                    combos.get(i).entregado = true;
+                    combos.remove(i);
+                } 
+            }
+        }
+    }
+    
     public void tick(){
         
         if(!clientes.isEmpty()){

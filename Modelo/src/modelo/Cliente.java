@@ -23,12 +23,14 @@ public class Cliente {
     public int contador;
     public boolean clienteEspecial;
     public int contadorPaciencia;
+    public boolean finalizado;
     
     public Cliente(){
         this.codigo = 0;
         pedidoCombos = new ArrayList<Combo>();
         pedidoProductos = new ArrayList<Producto>();
         this.contador = Restaurante.getRandom(60, 10);
+        this.finalizado = false;
         isEspecial();
     }
     
@@ -66,15 +68,15 @@ public class Cliente {
     public void ordenarProductos(Menu menu){
         int rand = getRandom(2, 1);
         for (int i = 0; i < rand; i++) {
-            pedidoProductos.add(menu.acompanamientos.get(getRandom(menu.acompanamientos.size(), 1)));
+            pedidoProductos.add(menu.acompanamientos.get(getRandom(menu.acompanamientos.size()-1, 0)));
         }
         rand = getRandom(2, 1);
         for (int i = 0; i < rand; i++) {
-            pedidoProductos.add(menu.bebidas.get(getRandom(menu.bebidas.size(), 1)));
+            pedidoProductos.add(menu.bebidas.get(getRandom(menu.bebidas.size()-1, 0)));
         }
         rand = getRandom(2, 1);
         for (int i = 0; i < rand; i++) {
-            pedidoProductos.add(menu.principales.get(getRandom(menu.principales.size(), 1)));
+            pedidoProductos.add(menu.principales.get(getRandom(menu.principales.size()-1, 0)));
         }
         compararCombos(menu);
         marcarProductos();
@@ -127,17 +129,18 @@ public class Cliente {
         }
     }
     
-    protected void revisarPedidos(){
+    public boolean revisarPedidos(){
         for (int i = 0; i < pedidoCombos.size(); i++) {
-            if (pedidoCombos.get(i).entregado)
-                pedidoCombos.remove(i);
+            if (!pedidoCombos.get(i).entregado)
+                return false;
         }
             
         for (int i = 0; i < pedidoProductos.size(); i++) {
-            if (pedidoProductos.get(i).entregado)
-                pedidoProductos.remove(i);
-            
+            if (!pedidoProductos.get(i).entregado)
+                return false;         
         }
+        return true;
     }
+    
     
  }
