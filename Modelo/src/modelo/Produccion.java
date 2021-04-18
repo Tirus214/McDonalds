@@ -61,7 +61,6 @@ public class Produccion {
     }
     
     public void procesar(){
-        
         if(!productos.isEmpty()){
             System.out.println("productos: " + productos.size());
             for (int i = 0; i < productos.size(); i++) {

@@ -86,20 +86,18 @@ public class Restaurante {
             while (colaCliente.getFirst().contador > 0){
                 esperar();
                 colaCliente.getFirst().contador--;
-                pantalla.imprimirElementos();
                 //System.out.println("contador > 0 es true siempre, linea 86 de restaurante");
             }   
             
             colaClientePendiente.addLast(colaCliente.removeFirst());
             colaClientePendiente.getFirst().ordenarProductos(menu);
             produccion.agregarOrden(colaClientePendiente.getFirst());
-            pantalla.imprimirElementos();
+
         }
         
         if(!colaClientePendiente.isEmpty()){
             
-            while (!colaClientePendiente.isEmpty() && !colaClientePendiente.getFirst().finalizado){
-                pantalla.imprimirElementos();
+            if (!colaClientePendiente.isEmpty() && !colaClientePendiente.getFirst().finalizado){
                 System.out.println("hola");
                 esperar();
                 //si es cliente especial...
@@ -110,14 +108,11 @@ public class Restaurante {
                         produccion.eliminarOrden(colaClientePendiente.getFirst());
                         colaClientePendiente.removeFirst();
                         cantIdos++;
-                        pantalla.imprimirElementos();
                         return;
                     }
                 }
-                pantalla.imprimirElementos();
                 System.out.println("Cantidad de combos: " + colaClientePendiente.getFirst().pedidoCombos.size());
                 produccion.procesar();
-                pantalla.imprimirElementos();
                 
                 if(colaClientePendiente.getFirst().revisarPedidos()){
                     colaClientePendiente.getFirst().finalizado = true;
@@ -125,10 +120,10 @@ public class Restaurante {
                     colaClientePendiente.removeFirst();
                     cantCorrectos++;
                 }                  
-                pantalla.imprimirElementos();
                 
                 if(colaCliente.isEmpty()) return;
             }
+            pantalla.imprimirElementos();
         }
     }
     
