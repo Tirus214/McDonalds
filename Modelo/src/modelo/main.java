@@ -16,10 +16,9 @@ public class main {
      */
     public static void main(String[] args) {
         
-        Pantalla p = new Pantalla();
-        p.imprimirElementos();
-        p.setVisible(true);
-        
+        Restaurante res = new Restaurante(new Pantalla());
+        res.pantalla.setVisible(true);
+        res.pantalla.imprimirElementos();
         
     }
     

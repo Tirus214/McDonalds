@@ -81,24 +81,22 @@ public class Restaurante {
     
     
     public void tick(){
-        if(!colaCliente.isEmpty()){
+        if(!colaCliente.isEmpty() && colaClientePendiente.isEmpty()){
             
-            while (colaCliente.getFirst().contador > 0){
+            if (colaCliente.getFirst().contador > 0){
                 esperar();
                 colaCliente.getFirst().contador--;
                 //System.out.println("contador > 0 es true siempre, linea 86 de restaurante");
             }   
-            
-            colaClientePendiente.addLast(colaCliente.removeFirst());
-            colaClientePendiente.getFirst().ordenarProductos(menu);
-            produccion.agregarOrden(colaClientePendiente.getFirst());
-
+            else{
+                colaClientePendiente.addLast(colaCliente.removeFirst());
+                colaClientePendiente.getFirst().ordenarProductos(menu);
+                produccion.agregarOrden(colaClientePendiente.getFirst());
+                pantalla.imprimirElementos();
+            }
         }
         
         if(!colaClientePendiente.isEmpty()){
-            
-            if (!colaClientePendiente.isEmpty() && !colaClientePendiente.getFirst().finalizado){
-                System.out.println("hola");
                 esperar();
                 //si es cliente especial...
                 if(colaClientePendiente.getFirst().clienteEspecial){
@@ -125,13 +123,12 @@ public class Restaurante {
             }
             pantalla.imprimirElementos();
         }
-    }
     
     
     
     public static void esperar(){
         try {
-            sleep(100);
+            sleep(0);
         } catch (InterruptedException ex) {
         }
     }

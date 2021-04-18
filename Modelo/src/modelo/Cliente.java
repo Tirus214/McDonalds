@@ -29,7 +29,7 @@ public class Cliente {
         this.codigo = 0;
         pedidoCombos = new ArrayList<Combo>();
         pedidoProductos = new ArrayList<Producto>();
-        this.contador = Restaurante.getRandom(10, 60);
+        this.contador = Restaurante.getRandom(10, 30);
         this.finalizado = false;
         isEspecial();
     }
@@ -38,7 +38,7 @@ public class Cliente {
         int rand = getRandom(0, 4);
         if(rand == 0){
             this.clienteEspecial = true;
-            this.contadorPaciencia = Restaurante.getRandom(10, 60);
+            this.contadorPaciencia = Restaurante.getRandom(10, 30);
         }
         else {
             this.clienteEspecial = false;
