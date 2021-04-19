@@ -28,6 +28,7 @@ public class Pantalla extends javax.swing.JFrame {
         lblCantIdos.setText(restaurante.cantIdos + "");
         lblCantCorrectos.setText(restaurante.cantCorrectos + "");
         txfSuceso.setText(restaurante.suceso);
+        labelTotal.setText("" + restaurante.ganancias);
         imprimirProductos();
         imprimirCombos();
         imprimirColaClientes();
@@ -152,6 +153,8 @@ public class Pantalla extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         txfSuceso = new javax.swing.JTextArea();
+        jLabel4 = new javax.swing.JLabel();
+        labelTotal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -201,11 +204,15 @@ public class Pantalla extends javax.swing.JFrame {
 
         lblCantCorrectos.setText("0");
 
-        jLabel3.setText("Suceso actual:");
+        jLabel3.setText("Bitácora");
 
         txfSuceso.setColumns(20);
         txfSuceso.setRows(5);
         jScrollPane5.setViewportView(txfSuceso);
+
+        jLabel4.setText("Ganancias totales:");
+
+        labelTotal.setText("0");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -243,18 +250,22 @@ public class Pantalla extends javax.swing.JFrame {
                                 .addComponent(jLabel11))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(60, 60, 60)
-                                .addComponent(jLabel10)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel4))))
                         .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblCantCorrectos)
                             .addComponent(lblCantIdos)
-                            .addComponent(lblCantDesechados))
-                        .addGap(143, 143, 143)
+                            .addComponent(lblCantDesechados)
+                            .addComponent(labelTotal))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(70, 70, 70)
+                                .addGap(194, 194, 194)
                                 .addComponent(jLabel3))
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(109, 109, 109)
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(147, 147, 147)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(19, Short.MAX_VALUE))
@@ -276,30 +287,34 @@ public class Pantalla extends javax.swing.JFrame {
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
+                        .addGap(63, 63, 63)
                         .addComponent(jLabel14)
                         .addGap(4, 4, 4)
                         .addComponent(jLabel11)
                         .addGap(4, 4, 4)
-                        .addComponent(jLabel10))
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
+                        .addGap(63, 63, 63)
                         .addComponent(lblCantCorrectos)
                         .addGap(4, 4, 4)
                         .addComponent(lblCantIdos)
                         .addGap(4, 4, 4)
-                        .addComponent(lblCantDesechados))
+                        .addComponent(lblCantDesechados)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelTotal))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
                         .addComponent(jLabel3)
-                        .addGap(14, 14, 14)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
+                        .addGap(53, 53, 53)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -361,12 +376,14 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JLabel labelTotal;
     private javax.swing.JLabel lblCantCorrectos;
     private javax.swing.JLabel lblCantDesechados;
     private javax.swing.JLabel lblCantIdos;

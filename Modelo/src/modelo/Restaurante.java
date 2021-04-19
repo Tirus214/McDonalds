@@ -28,6 +28,7 @@ public class Restaurante {
     public Pantalla pantalla;
     public Produccion produccion;
     public String suceso;
+    public int ganancias = 0;
 
     
     public Restaurante(Pantalla pantalla){
@@ -93,7 +94,7 @@ public class Restaurante {
                     colaClientePendiente.getFirst().contadorPaciencia--;
                     if(colaClientePendiente.getFirst().contadorPaciencia <= 0){
                         colaClientePendiente.getFirst().finalizado = true;
-                        suceso = "El cliente " + colaClientePendiente.getFirst().codigo + " se ha ido";
+                        suceso += "El cliente " + colaClientePendiente.getFirst().codigo + " se ha ido \n";
                         contarDesechos(colaClientePendiente.getFirst());
                         produccion.eliminarOrden(colaClientePendiente.getFirst());
                         colaClientePendiente.removeFirst();
@@ -104,8 +105,9 @@ public class Restaurante {
                 produccion.procesar(colaClientePendiente.getFirst().codigo);
                 if(colaClientePendiente.getFirst().revisarPedidos()){
                     colaClientePendiente.getFirst().finalizado = true;
-                    suceso = "El cliente " + colaClientePendiente.getFirst().codigo + " pagó " + 
-                            colaClientePendiente.getFirst().gasto;
+                    suceso += "El cliente " + colaClientePendiente.getFirst().codigo + " pagó " + 
+                            colaClientePendiente.getFirst().gasto + "\n";
+                    ganancias += colaClientePendiente.getFirst().gasto;
                     colaClientePendiente.removeFirst();
                     cantCorrectos++;
                 }                  
