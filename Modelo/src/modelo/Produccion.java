@@ -21,7 +21,6 @@ public class Produccion {
     public LinkedList<Cliente> enEspera;
     public LinkedList<Producto> productos;
     public LinkedList<Combo> combos;
-    public Pantalla pantalla;
     public int tamanoUsado = 0;
     
     public Produccion(LinkedList<Producto> productos, LinkedList<Combo> combos){
