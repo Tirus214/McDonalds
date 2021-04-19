@@ -24,13 +24,17 @@ public class Cliente {
     public boolean clienteEspecial;
     public int contadorPaciencia;
     public boolean finalizado;
+    private int match;
+    public int gasto;
     
     public Cliente(){
-        this.codigo = 0;
+        codigo = 0;
         pedidoCombos = new ArrayList<Combo>();
         pedidoProductos = new ArrayList<Producto>();
-        this.contador = Restaurante.getRandom(10, 30);
-        this.finalizado = false;
+        contador = Restaurante.getRandom(10, 30);
+        finalizado = false;
+        match = 0;
+        gasto = 0;
         isEspecial();
     }
     
@@ -63,31 +67,45 @@ public class Cliente {
             PlatoFuerte p1 = menu.principales.get(getRandom(0, menu.principales.size()-1)).clonacion();
             pedidoProductos.add(p1);
         }
-        compararCombos(menu);
+        
+        imprirmiProductos();
+        checkearCombo2(menu);
+        //compararCombos(menu);
+        imprirmiProductos();
+        
         marcarProductos();
     }
     
     private void marcarProductos(){
-        for (int i = 0; i < pedidoProductos.size(); i++) 
+        for (int i = 0; i < pedidoProductos.size(); i++){
             pedidoProductos.get(i).codigo = this.codigo;
-        
-        for (int i = 0; i < pedidoCombos.size(); i++)
+            gasto += pedidoProductos.get(i).precio;
+        }
+              
+        for (int i = 0; i < pedidoCombos.size(); i++){
             pedidoCombos.get(i).codigo = this.codigo;
-
+            gasto += pedidoCombos.get(i).precio;
+        }
     }
     
     public void compararCombos(Menu menu){
-        for (int i = 0; i < menu.combos.size(); i++)
+        for (int i = 0; i < menu.combos.size(); i++){
+            
             if (checkearCombo(menu.combos.get(i))){
-                pedidoCombos.add(menu.combos.get(i).clonacion());
                 eliminarProductos(menu.combos.get(i));
+                Combo nuevo = menu.combos.get(i).clonacion();
+                nuevo.codigo = this.codigo;
+                pedidoCombos.add(nuevo);
+                System.out.println(pedidoCombos.size());
             }
+        }
                 
     }
     
     private boolean checkearCombo(Combo combo){
-        int match = 0;
+        
         for (int i = 0; i < pedidoProductos.size(); i++) {
+            
             if(pedidoProductos.get(i).nombre == combo.principal.nombre)
                 match++;
             else if(pedidoProductos.get(i).nombre == combo.bebida.nombre)
@@ -95,28 +113,47 @@ public class Cliente {
             else if(pedidoProductos.get(i).nombre == combo.acomp.nombre)
                 match++;
             
-            if(match == 3) return true;
+            if(match == 3) {
+                match = 0;
+                return true;
+            }
         }
         return false;
     }
     
+    private void checkearCombo2(Menu menu){
+        for (int i = 0; i < menu.combos.size(); i++) {
+            
+            if(buscarProducto(menu.combos.get(i).principal.nombre))
+                if(buscarProducto(menu.combos.get(i).acomp.nombre))
+                    if(buscarProducto(menu.combos.get(i).bebida.nombre)){
+                        
+                        pedidoCombos.add(menu.combos.get(i).clonacion());
+                        eliminarProducto(menu.combos.get(i).principal.nombre);
+                        eliminarProducto(menu.combos.get(i).acomp.nombre);
+                        eliminarProducto(menu.combos.get(i).bebida.nombre);
+                    }
+            
+        }
+    }
+    
     private void eliminarProductos(Combo combo){
-        int match = 3;
+        int match2 = 3;
         for (int i = 0; i < pedidoProductos.size(); i++) {
             if(pedidoProductos.get(i).nombre == combo.principal.nombre){
                 pedidoProductos.remove(i);
-                match--;
+                match2--;
             }
             else if(pedidoProductos.get(i).nombre == combo.bebida.nombre){
                 pedidoProductos.remove(i);
-                match--;
+                match2--;
             }
             else if(pedidoProductos.get(i).nombre == combo.acomp.nombre){
                 pedidoProductos.remove(i);
-                match--;
+                match2--;
             }
             
-            if(match == 0)
+            if(match2 <= 0)
                 return;
         }
     }
@@ -134,5 +171,25 @@ public class Cliente {
         return true;
     }
     
+    public void imprirmiProductos(){
+        for (int i = 0; i < pedidoProductos.size(); i++) {
+            System.out.println(pedidoProductos.get(i).nombre);
+        }
+        System.out.println("\n");
+    }
     
+    public boolean buscarProducto(String nombre){
+        for (int i = 0; i < pedidoProductos.size(); i++) 
+            if(pedidoProductos.get(i).nombre == nombre)
+                return true;
+        return false;
+    }
+    
+    public void eliminarProducto(String nombre){
+        for (int i = 0; i < pedidoProductos.size(); i++) 
+            if(pedidoProductos.get(i).nombre == nombre){
+                pedidoProductos.remove(i);
+                return;
+            }       
+    }
  }

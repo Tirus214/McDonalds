@@ -22,6 +22,11 @@ public class Acompanamiento extends Producto{
     }
     
     public Acompanamiento clonacion(){
-        return new Acompanamiento(nombre, precio, tiempoProduccion, tipo);
+        Acompanamiento p = new Acompanamiento(nombre, precio, tiempoProduccion, tipo);
+        p.clasificacion = clasificacion;
+        p.codigo = codigo;
+        p.entregado = entregado;
+        p.valor = valor;
+        return p;
     }
 }

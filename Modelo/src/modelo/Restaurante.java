@@ -24,13 +24,10 @@ public class Restaurante {
     private jsonClass json;
     public int cantIdos;
     public int cantDesechados;
-    public Produccion procesar;
     public int cantCorrectos;
-    public ArrayList<Object> entregados;
-    public ArrayList<Cliente> satisfechos;
     public Pantalla pantalla;
-    
     public Produccion produccion;
+    public String suceso;
 
     
     public Restaurante(Pantalla pantalla){
@@ -39,16 +36,12 @@ public class Restaurante {
         colaClientePendiente = new LinkedList<Cliente>();
         colaOrdenesPendientes = new LinkedList<Producto>();
         combos = new LinkedList<Combo>();
-        satisfechos = new ArrayList<Cliente>();
         this.pantalla = pantalla;
-        procesar = new Produccion(colaCliente, colaClientePendiente, colaOrdenesPendientes, combos,  entregados, satisfechos);
-        procesar.pantalla = this.pantalla;
         cantDesechados = 0;
         cantIdos = 0;
         cantCorrectos = 0;
-        
+        suceso = "";
         produccion = new Produccion(colaOrdenesPendientes, combos);
-        
         json = new jsonClass();
         setMenu();
         crearClientes();
@@ -73,8 +66,6 @@ public class Restaurante {
         }
     }
     
-     
-    
     public static int getRandom(int menor, int mayor){
         return (int)Math.floor(Math.random()*(mayor - menor + 1) + menor);
     }
@@ -82,7 +73,6 @@ public class Restaurante {
     
     public void tick(){
         if(!colaCliente.isEmpty() && colaClientePendiente.isEmpty()){
-            
             if (colaCliente.getFirst().contador > 0){
                 esperar();
                 colaCliente.getFirst().contador--;
@@ -92,39 +82,40 @@ public class Restaurante {
                 colaClientePendiente.addLast(colaCliente.removeFirst());
                 colaClientePendiente.getFirst().ordenarProductos(menu);
                 produccion.agregarOrden(colaClientePendiente.getFirst());
-                pantalla.imprimirElementos();
             }
         }
+        else if(colaCliente.isEmpty()) return;
         
         if(!colaClientePendiente.isEmpty()){
                 esperar();
                 //si es cliente especial...
                 if(colaClientePendiente.getFirst().clienteEspecial){
                     colaClientePendiente.getFirst().contadorPaciencia--;
-                    if(colaClientePendiente.getFirst().contadorPaciencia == 0){
+                    if(colaClientePendiente.getFirst().contadorPaciencia <= 0){
                         colaClientePendiente.getFirst().finalizado = true;
+                        suceso = "El cliente " + colaClientePendiente.getFirst().codigo + " se ha ido";
+                        contarDesechos(colaClientePendiente.getFirst());
                         produccion.eliminarOrden(colaClientePendiente.getFirst());
                         colaClientePendiente.removeFirst();
                         cantIdos++;
                         return;
                     }
                 }
-                System.out.println("Cantidad de combos: " + colaClientePendiente.getFirst().pedidoCombos.size());
-                produccion.procesar();
-                
+                produccion.procesar(colaClientePendiente.getFirst().codigo);
                 if(colaClientePendiente.getFirst().revisarPedidos()){
                     colaClientePendiente.getFirst().finalizado = true;
-                    produccion.eliminarOrden(colaClientePendiente.getFirst());
+                    suceso = "El cliente " + colaClientePendiente.getFirst().codigo + " pagó " + 
+                            colaClientePendiente.getFirst().gasto;
                     colaClientePendiente.removeFirst();
                     cantCorrectos++;
                 }                  
-                
-                if(colaCliente.isEmpty()) return;
             }
-            pantalla.imprimirElementos();
         }
     
-    
+    public void contarDesechos(Cliente clienteActual){
+        cantDesechados += clienteActual.pedidoProductos.size();
+        cantDesechados += clienteActual.pedidoCombos.size() * 3;
+    }
     
     public static void esperar(){
         try {

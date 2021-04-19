@@ -24,7 +24,12 @@ public class Bebida extends Producto{
     }
     
     public Bebida clonacion(){
-        return new Bebida(nombre, precio, tiempoProduccion, tipo, tamano);
+        Bebida p = new Bebida(nombre, precio, tiempoProduccion, tipo, tamano);
+        p.clasificacion = clasificacion;
+        p.codigo = codigo;
+        p.entregado = entregado;
+        p.valor = valor;
+        return p;
     }
 }
   

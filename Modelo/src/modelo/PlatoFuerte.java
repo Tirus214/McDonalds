@@ -24,7 +24,12 @@ public class PlatoFuerte extends Producto{
     }
    
     public PlatoFuerte clonacion(){
-        return new PlatoFuerte(nombre, precio, tiempoProduccion, tamano);
+        PlatoFuerte p = new PlatoFuerte(nombre, precio, tiempoProduccion, tamano);
+        p.clasificacion = clasificacion;
+        p.codigo = codigo;
+        p.entregado = entregado;
+        p.valor = valor;
+        return p;
     }
 }
 

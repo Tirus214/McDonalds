@@ -31,7 +31,12 @@ public class Combo implements Cloneable{
     }
     
     public Combo clonacion(){
-        return new Combo(principal.clonacion(), bebida.clonacion(), acomp.clonacion(), precio, tiempoProduccion);
+        Combo c = new Combo(principal.clonacion(), bebida.clonacion(), acomp.clonacion(), precio, tiempoProduccion);
+        c.numero = numero;
+        c.codigo = codigo;
+        c.precio = precio;
+        c.entregado = entregado;
+        return c;
     }
     
     @Override
