@@ -59,6 +59,24 @@ public class jsonClass {
             
             JSONObject receta5 = (JSONObject) recetario.get("receta5");
             insertarProducto(receta5);
+            
+            JSONObject receta6 = (JSONObject) recetario.get("receta6");
+            insertarProducto(receta6);
+            
+            JSONObject receta7 = (JSONObject) recetario.get("receta7");
+            insertarProducto(receta7);
+            
+            JSONObject receta8 = (JSONObject) recetario.get("receta8");
+            insertarProducto(receta8);
+            
+            JSONObject receta9 = (JSONObject) recetario.get("receta9");
+            insertarProducto(receta9);
+            
+            JSONObject receta10 = (JSONObject) recetario.get("receta10");
+            insertarProducto(receta10);
+            
+            JSONObject receta11 = (JSONObject) recetario.get("receta11");
+            insertarProducto(receta11);
         }
         catch (Exception e) {
             System.out.println("Error al leer el json");
