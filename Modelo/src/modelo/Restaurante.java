@@ -7,9 +7,6 @@ package modelo;
 
 import static java.lang.Thread.sleep;
 import java.util.LinkedList;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -29,6 +26,7 @@ public class Restaurante {
     public Produccion produccion;
     public String suceso;
     public int ganancias = 0;
+    public Boolean finalizado = false;
 
     
     public Restaurante(Pantalla pantalla){
@@ -85,7 +83,7 @@ public class Restaurante {
                 produccion.agregarOrden(colaClientePendiente.getFirst());
             }
         }
-        else if(colaCliente.isEmpty()) return;
+        //else if(colaCliente.isEmpty()) return;
         
         if(!colaClientePendiente.isEmpty()){
                 esperar();
@@ -112,6 +110,11 @@ public class Restaurante {
                     cantCorrectos++;
                 }                  
             }
+         if(colaCliente.isEmpty() && colaClientePendiente.isEmpty() && !finalizado) {
+             suceso += "La simulación ha finalizado\n";
+             finalizado = true;
+         }
+
         }
     
     public void contarDesechos(Cliente clienteActual){
