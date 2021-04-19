@@ -10,7 +10,7 @@ package modelo;
  *
  * @author Jean Paul
  */
-public class Combo implements Cloneable{
+public class Combo{
     
     protected PlatoFuerte principal;
     protected Bebida bebida;
