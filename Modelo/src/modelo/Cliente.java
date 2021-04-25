@@ -28,7 +28,6 @@ public class Cliente {
     public int gasto;
     
     public Cliente(){
-        codigo = 0;
         pedidoCombos = new ArrayList<Combo>();
         pedidoProductos = new ArrayList<Producto>();
         contador = Restaurante.getRandom(10, 30);
@@ -69,7 +68,7 @@ public class Cliente {
         }
         
         imprirmiProductos();
-        checkearCombo2(menu);
+        //checkearCombo2(menu);
         //compararCombos(menu);
         imprirmiProductos();
         

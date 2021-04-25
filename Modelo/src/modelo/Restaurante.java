@@ -60,8 +60,9 @@ public class Restaurante {
     public void crearClientes(){
         int cantClientes = getRandom(5,20);
         for (int i = 0; i < cantClientes; i++) {
-            colaCliente.addLast(new Cliente());
-            colaCliente.getLast().codigo = i;
+            Cliente c = new Cliente();
+            c.codigo = i;
+            colaCliente.add(c);
         }
     }
     
@@ -100,6 +101,7 @@ public class Restaurante {
                         return;
                     }
                 }
+                
                 produccion.procesar(colaClientePendiente.getFirst().codigo);
                 if(colaClientePendiente.getFirst().revisarPedidos()){
                     colaClientePendiente.getFirst().finalizado = true;

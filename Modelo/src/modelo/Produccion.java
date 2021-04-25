@@ -69,11 +69,12 @@ public class Produccion {
                     tamanoUsado += productos.get(i).valor;
                     if(productos.get(i).tiempoProduccion > 0 && tamanoUsado <= 10)
                         productos.get(i).tiempoProduccion--;
-                    else if(productos.get(i).tiempoProduccion <= 0){
+                     
+                }
+                if(productos.get(i).tiempoProduccion <= 0){
                         productos.get(i).entregado = true;
                         productos.remove(i);
-                    }  
-                }
+                } 
             }
         }
         
