@@ -71,7 +71,7 @@ public class Restaurante {
     
     
     public void tick(){
-        if(!colaCliente.isEmpty() && colaClientePendiente.isEmpty()){
+        if(!colaCliente.isEmpty()){
             if (colaCliente.getFirst().contador > 0){
                 esperar();
                 colaCliente.getFirst().contador--;

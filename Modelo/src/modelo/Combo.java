@@ -20,6 +20,7 @@ public class Combo{
     protected int tiempoProduccion;
     protected boolean entregado = false;
     public int codigo;
+    
 
 
     public Combo(PlatoFuerte principal, Bebida bebida, Acompanamiento acomp, int precio, int tiempoProduccion) {
@@ -27,7 +28,10 @@ public class Combo{
         this.bebida = bebida;
         this.acomp = acomp;
         this.precio = precio;
-        this.tiempoProduccion = tiempoProduccion;
+        this.tiempoProduccion = 0;
+        this.principal.precio = this.precio;
+        this.acomp.precio = 0;
+        this.bebida.precio = 0;
     }
     
     public Combo clonacion(){

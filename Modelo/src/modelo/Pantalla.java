@@ -102,27 +102,38 @@ public class Pantalla extends javax.swing.JFrame {
     
     public void imprimirPedidosPendientes(){
         txfColaOrdenesPendientes.setText("");
-        
-        for (int j = 0; j < restaurante.colaClientePendiente.size(); j++) {
-            Cliente c = restaurante.colaClientePendiente.get(j);
+        if(restaurante.colaOrdenesPendientes.isEmpty())
+            return;
+        for (int i = 0; i < restaurante.colaOrdenesPendientes.size(); i++) {
+            Producto p = restaurante.colaOrdenesPendientes.get(i);
+            if (p.entregado)
+                return;
+            //txfColaOrdenesPendientes.append(p.);
+            txfColaOrdenesPendientes.append("Orden: " + p.codigo + "\n");
+            txfColaOrdenesPendientes.append("Nombre: " + p.nombre + "\n");
+            txfColaOrdenesPendientes.append("Tiempo: " + p.tiempoProduccion + "\n\n");
             
+        }
+        /*for (int j = 0; j < restaurante.colaClientePendiente.size(); j++) {
+            Cliente c = restaurante.colaClientePendiente.get(j);
+            txfColaOrdenesPendientes.append("Orden " +c.codigo+ ":\n" );
             System.out.println("Combos de Cliente actual: " + c.pedidoCombos.size());
             for (int i = 0; i < c.pedidoProductos.size(); i++) {
                 if(!c.pedidoProductos.get(i).entregado){
-                    txfColaOrdenesPendientes.append("Orden: " + c.pedidoProductos.get(i).codigo + "\n");
+                    txfColaOrdenesPendientes.append("Orden: " + c.codigo + "\n");
                     txfColaOrdenesPendientes.append("Nombre: " + c.pedidoProductos.get(i).nombre + "\n");
                     txfColaOrdenesPendientes.append("Tiempo: " + c.pedidoProductos.get(i).tiempoProduccion + "\n\n");  
                 }
-            }  
+            }  */
             
-            for (int k = 0; k < c.pedidoCombos.size(); k++) {
-                if(!c.pedidoCombos.get(k).entregado){
-                    txfColaOrdenesPendientes.append("Orden: " + c.pedidoCombos.get(k).codigo + "\n");
-                    txfColaOrdenesPendientes.append("Combo: " + c.pedidoCombos.get(k).numero + "\n");
-                    txfColaOrdenesPendientes.append("Tiempo: " + c.pedidoCombos.get(k).tiempoProduccion + "\n\n");
-                }
-            }
-        }
+            //for (int k = 0; k < c.pedidoCombos.size(); k++) {
+                //if(!c.pedidoCombos.get(k).entregado){
+                   // txfColaOrdenesPendientes.append("Orden: " + c.pedidoCombos.get(k).codigo + "\n");
+                    //txfColaOrdenesPendientes.append("Combo: " + c.pedidoCombos.get(k).numero + "\n");
+                    //txfColaOrdenesPendientes.append("Tiempo: " + c.pedidoCombos.get(k).tiempoProduccion + "\n\n");
+               // }
+            //}
+        //}
     }
     
     

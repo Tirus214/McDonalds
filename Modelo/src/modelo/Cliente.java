@@ -159,10 +159,10 @@ public class Cliente {
     }
     
     public boolean revisarPedidos(){
-        for (int i = 0; i < pedidoCombos.size(); i++) {
+        /*for (int i = 0; i < pedidoCombos.size(); i++) {
             if (!pedidoCombos.get(i).entregado)
                 return false;
-        }
+        }*/
             
         for (int i = 0; i < pedidoProductos.size(); i++) {
             if (!pedidoProductos.get(i).entregado)

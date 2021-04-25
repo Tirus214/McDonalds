@@ -33,8 +33,19 @@ public class Produccion {
             productos.add(clienteActual.pedidoProductos.get(i)); 
         }
    
-        for (int i = 0; i < clienteActual.pedidoCombos.size(); i++)
-            combos.add(clienteActual.pedidoCombos.get(i));
+        for (int i = 0; i < clienteActual.pedidoCombos.size(); i++){
+            Combo comb = clienteActual.pedidoCombos.get(i);
+            comb.bebida.nombre = "Combo " + comb.numero + " " + comb.bebida.nombre;
+            comb.acomp.nombre = "Combo " + comb.numero + " " + comb.acomp.nombre;
+            comb.principal.nombre = "Combo " + comb.numero + " " + comb.principal.nombre;
+            comb.bebida.codigo = comb.codigo;
+            comb.acomp.codigo = comb.codigo;
+            comb.principal.codigo = comb.codigo;
+            productos.add(comb.bebida);
+            productos.add(comb.acomp);
+            productos.add(comb.principal);
+        
+        }
     }
     
     public void eliminarOrden(Cliente clienteActual){
@@ -67,15 +78,15 @@ public class Produccion {
         }
         
         //System.out.println("combos: " + combos.size() + "\n");
-        if(!combos.isEmpty() && tamanoUsado <= 4){
+        /*if(!combos.isEmpty() && tamanoUsado <= 4){
 
-            if(combos.getFirst().tiempoProduccion > 0)
+            /if(combos.getFirst().tiempoProduccion > 0)
                 combos.getFirst().tiempoProduccion--;
             else{
                 combos.getFirst().entregado = true;
                 combos.removeFirst();
             } 
-        }
+        }*/
     }
     
     public void removerProductos(int codigo){
