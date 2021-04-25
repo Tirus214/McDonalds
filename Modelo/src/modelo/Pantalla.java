@@ -337,8 +337,6 @@ public class Pantalla extends javax.swing.JFrame {
             
             restaurante.tick();
             restaurante.tick();
-            restaurante.tick();
-            restaurante.tick();
             imprimirElementos();
         
         //}

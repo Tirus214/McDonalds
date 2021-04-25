@@ -79,9 +79,9 @@ public class Restaurante {
                 //System.out.println("contador > 0 es true siempre, linea 86 de restaurante");
             }   
             else{
-                colaClientePendiente.addLast(colaCliente.removeFirst());
-                colaClientePendiente.getFirst().ordenarProductos(menu);
-                produccion.agregarOrden(colaClientePendiente.getFirst());
+                colaCliente.getFirst().ordenarProductos(menu);
+                produccion.agregarOrden(colaCliente.getFirst());
+                colaClientePendiente.add(colaCliente.removeFirst());
             }
         }
         //else if(colaCliente.isEmpty()) return;
@@ -102,7 +102,17 @@ public class Restaurante {
                     }
                 }
                 
+                for (int i = 0; i < colaClientePendiente.size(); i++) {
+                    System.out.println("Cliente:    " + colaClientePendiente.getLast().codigo);
+                    System.out.println("cant1   " + colaClientePendiente.getLast().pedidoProductos.size());
+                
+                }
+                System.out.println("Cliente:    " + colaClientePendiente.getLast().codigo);
+                System.out.println("cant1   " + colaClientePendiente.getLast().pedidoProductos.size());
                 produccion.procesar(colaClientePendiente.getFirst().codigo);
+                System.out.println("cant2   " + colaClientePendiente.getLast().pedidoProductos.size());
+                System.out.println("");
+                
                 if(colaClientePendiente.getFirst().revisarPedidos()){
                     colaClientePendiente.getFirst().finalizado = true;
                     suceso += "El cliente " + colaClientePendiente.getFirst().codigo + " pagó " + 
@@ -112,10 +122,11 @@ public class Restaurante {
                     cantCorrectos++;
                 }                  
             }
-         if(colaCliente.isEmpty() && colaClientePendiente.isEmpty() && !finalizado) {
-             suceso += "La simulación ha finalizado\n";
-             finalizado = true;
-         }
+        
+            if(colaCliente.isEmpty() && colaClientePendiente.isEmpty() && !finalizado) {
+                suceso += "La simulación ha finalizado\n";
+                finalizado = true;
+            }
 
         }
     

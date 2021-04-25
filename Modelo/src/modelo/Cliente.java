@@ -67,10 +67,10 @@ public class Cliente {
             pedidoProductos.add(p1);
         }
         
-        imprirmiProductos();
+        //imprirmiProductos();
         //checkearCombo2(menu);
         //compararCombos(menu);
-        imprirmiProductos();
+        //imprirmiProductos();
         
         marcarProductos();
     }
@@ -95,7 +95,7 @@ public class Cliente {
                 Combo nuevo = menu.combos.get(i).clonacion();
                 nuevo.codigo = this.codigo;
                 pedidoCombos.add(nuevo);
-                System.out.println(pedidoCombos.size());
+                //System.out.println(pedidoCombos.size());
             }
         }
                 
