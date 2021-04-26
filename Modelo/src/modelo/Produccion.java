@@ -29,10 +29,6 @@ public class Produccion {
     }
     
     public void agregarOrden(Cliente clienteActual){
-        for (int i = 0; i < clienteActual.pedidoProductos.size(); i++){
-            productos.add(clienteActual.pedidoProductos.get(i)); 
-        }
-   
         for (int i = 0; i < clienteActual.pedidoCombos.size(); i++){
             Combo comb = clienteActual.pedidoCombos.get(i);
             comb.bebida.nombre = "Combo " + comb.numero + " " + comb.bebida.nombre;
@@ -41,11 +37,15 @@ public class Produccion {
             comb.bebida.codigo = comb.codigo;
             comb.acomp.codigo = comb.codigo;
             comb.principal.codigo = comb.codigo;
-            productos.add(comb.bebida);
-            productos.add(comb.acomp);
-            productos.add(comb.principal);
-        
+            clienteActual.pedidoProductos.add(comb.bebida);
+            clienteActual.pedidoProductos.add(comb.acomp);
+            clienteActual.pedidoProductos.add(comb.principal);
         }
+        for (int i = 0; i < clienteActual.pedidoProductos.size(); i++){
+            productos.add(clienteActual.pedidoProductos.get(i)); 
+        }
+        //System.out.println(""+ clienteActual.pedidoCombos.size());
+        
     }
     
     public void eliminarOrden(Cliente clienteActual){
@@ -77,7 +77,6 @@ public class Produccion {
                 } 
             }
         }
-        
         //System.out.println("combos: " + combos.size() + "\n");
         /*if(!combos.isEmpty() && tamanoUsado <= 4){
 

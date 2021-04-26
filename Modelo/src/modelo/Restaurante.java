@@ -86,32 +86,33 @@ public class Restaurante {
         }
         //else if(colaCliente.isEmpty()) return;
         
-        if(!colaClientePendiente.isEmpty()){
+        for (int j = 0; j < colaClientePendiente.size(); j++) {
+           
                 esperar();
                 //si es cliente especial...
-                if(colaClientePendiente.getFirst().clienteEspecial){
-                    colaClientePendiente.getFirst().contadorPaciencia--;
-                    if(colaClientePendiente.getFirst().contadorPaciencia <= 0){
-                        colaClientePendiente.getFirst().finalizado = true;
-                        suceso += "El cliente " + colaClientePendiente.getFirst().codigo + " se ha ido \n";
-                        contarDesechos(colaClientePendiente.getFirst());
-                        produccion.eliminarOrden(colaClientePendiente.getFirst());
-                        colaClientePendiente.removeFirst();
+                if(colaClientePendiente.get(j).clienteEspecial){
+                    colaClientePendiente.get(j).contadorPaciencia--;
+                    if(colaClientePendiente.get(j).contadorPaciencia <= 0){
+                        colaClientePendiente.get(j).finalizado = true;
+                        suceso += "El cliente " + colaClientePendiente.get(j).codigo + " se ha ido \n";
+                        contarDesechos(colaClientePendiente.get(j));
+                        produccion.eliminarOrden(colaClientePendiente.get(j));
+                        colaClientePendiente.remove(j);
                         cantIdos++;
                         return;
                     }
                 }
                 
                 for (int i = 0; i < colaClientePendiente.size(); i++) {
-                    System.out.println("Cliente:    " + colaClientePendiente.getLast().codigo);
-                    System.out.println("cant1   " + colaClientePendiente.getLast().pedidoProductos.size());
+                    //System.out.println("Cliente:    " + colaClientePendiente.getLast().codigo);
+                    //System.out.println("cant1   " + colaClientePendiente.getLast().pedidoProductos.size());
                 
                 }
-                System.out.println("Cliente:    " + colaClientePendiente.getLast().codigo);
-                System.out.println("cant1   " + colaClientePendiente.getLast().pedidoProductos.size());
+                //System.out.println("Cliente:    " + colaClientePendiente.getLast().codigo);
+                //System.out.println("cant1   " + colaClientePendiente.getLast().pedidoProductos.size());
                 produccion.procesar(colaClientePendiente.getFirst().codigo);
-                System.out.println("cant2   " + colaClientePendiente.getLast().pedidoProductos.size());
-                System.out.println("");
+                //System.out.println("cant2   " + colaClientePendiente.getLast().pedidoProductos.size());
+                //System.out.println("");
                 
                 if(colaClientePendiente.getFirst().revisarPedidos()){
                     colaClientePendiente.getFirst().finalizado = true;
@@ -125,6 +126,7 @@ public class Restaurante {
         
             if(colaCliente.isEmpty() && colaClientePendiente.isEmpty() && !finalizado) {
                 suceso += "La simulación ha finalizado\n";
+                pantalla.imprimirPedidosPendientes();
                 finalizado = true;
             }
 

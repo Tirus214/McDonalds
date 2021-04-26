@@ -30,7 +30,7 @@ public class Cliente {
     public Cliente(){
         pedidoCombos = new ArrayList<Combo>();
         pedidoProductos = new ArrayList<Producto>();
-        contador = Restaurante.getRandom(10, 30);
+        contador = Restaurante.getRandom(5, 10);
         finalizado = false;
         match = 0;
         gasto = 0;
@@ -38,7 +38,7 @@ public class Cliente {
     }
     
     public void isEspecial(){
-        int rand = getRandom(0, 4);
+        int rand = getRandom(0, 3);
         if(rand == 0){
             this.clienteEspecial = true;
             this.contadorPaciencia = Restaurante.getRandom(10, 30);
@@ -68,7 +68,7 @@ public class Cliente {
         }
         
         //imprirmiProductos();
-        //checkearCombo2(menu);
+        checkearCombo2(menu);
         //compararCombos(menu);
         //imprirmiProductos();
         
