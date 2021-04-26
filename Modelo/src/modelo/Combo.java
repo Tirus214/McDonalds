@@ -29,9 +29,7 @@ public class Combo{
         this.acomp = acomp;
         this.precio = precio;
         this.tiempoProduccion = 0;
-        this.principal.precio = this.precio;
-        this.acomp.precio = 0;
-        this.bebida.precio = 0;
+
     }
     
     public Combo clonacion(){

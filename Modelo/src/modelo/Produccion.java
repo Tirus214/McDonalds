@@ -37,6 +37,9 @@ public class Produccion {
             comb.bebida.codigo = comb.codigo;
             comb.acomp.codigo = comb.codigo;
             comb.principal.codigo = comb.codigo;
+            comb.bebida.precio = 0;
+            comb.acomp.precio = 0;
+            comb.principal.precio = comb.precio;
             clienteActual.pedidoProductos.add(comb.bebida);
             clienteActual.pedidoProductos.add(comb.acomp);
             clienteActual.pedidoProductos.add(comb.principal);
