@@ -13,7 +13,6 @@ public class Bebida extends Producto{
     
     public String tipo;     //frio o caliente  
     public int tamano;      //200ml, 250ml o 330ml
-    public int valor = 1;
 
 
     public Bebida(String nombre, int precio, int tiempoProduccion, String tipo, int tamano) {
@@ -21,6 +20,7 @@ public class Bebida extends Producto{
         this.tipo = tipo;
         this.tamano = tamano;
         this.clasificacion = 3;
+        this.valor = 1;
     }
     
     public Bebida clonacion(){

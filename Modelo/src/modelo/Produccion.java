@@ -69,28 +69,21 @@ public class Produccion {
             
             for (int i = 0; i < productos.size(); i++) {
                 
-                    tamanoUsado += productos.get(i).valor;
-                    if(productos.get(i).tiempoProduccion > 0 && tamanoUsado <= 10){
-                        productos.get(i).tiempoProduccion--;
-                        productos.get(i).Imprimir();
-                    }
                      
                 if(productos.get(i).tiempoProduccion <= 0){
                         productos.get(i).entregado = true;
                         productos.remove(i);
-                } 
+                        break;
+                }
+                tamanoUsado += productos.get(i).valor;
+                    if(productos.get(i).tiempoProduccion > 0 && tamanoUsado <= 10){
+                        productos.get(i).tiempoProduccion = productos.get(i).tiempoProduccion - 1 ;
+                        productos.get(i).Imprimir();
+                        System.out.println(""+ tamanoUsado);
+                    }
             }
         }
-        //System.out.println("combos: " + combos.size() + "\n");
-        /*if(!combos.isEmpty() && tamanoUsado <= 4){
 
-            /if(combos.getFirst().tiempoProduccion > 0)
-                combos.getFirst().tiempoProduccion--;
-            else{
-                combos.getFirst().entregado = true;
-                combos.removeFirst();
-            } 
-        }*/
     }
     
     public void removerProductos(int codigo){

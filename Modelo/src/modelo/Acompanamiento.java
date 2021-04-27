@@ -12,13 +12,13 @@ package modelo;
 public class Acompanamiento extends Producto{
     
     public String tipo;     //salado o dulce
-    public int valor = 2;
 
 
     public Acompanamiento(String nombre, int precio, int tiempoProduccion, String tipo) {
         super(nombre, precio, tiempoProduccion);
         this.tipo = tipo;
         this.clasificacion = 2;
+        this.valor = 2;
     }
     
     public Acompanamiento clonacion(){

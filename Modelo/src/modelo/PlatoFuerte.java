@@ -17,6 +17,7 @@ public class PlatoFuerte extends Producto{
         super(nombre, precio, tiempoProduccion);
         this.tamano = tamano;
         this.clasificacion = 1;
+        this.valor = 3;
     }
 
     public String ImprimirPlato(){
