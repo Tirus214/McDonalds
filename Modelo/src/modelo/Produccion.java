@@ -68,12 +68,13 @@ public class Produccion {
             tamanoUsado = 0;
             
             for (int i = 0; i < productos.size(); i++) {
-                if(productos.get(i).codigo == num){
+                
                     tamanoUsado += productos.get(i).valor;
-                    if(productos.get(i).tiempoProduccion > 0 && tamanoUsado <= 10)
+                    if(productos.get(i).tiempoProduccion > 0 && tamanoUsado <= 10){
                         productos.get(i).tiempoProduccion--;
+                        productos.get(i).Imprimir();
+                    }
                      
-                }
                 if(productos.get(i).tiempoProduccion <= 0){
                         productos.get(i).entregado = true;
                         productos.remove(i);

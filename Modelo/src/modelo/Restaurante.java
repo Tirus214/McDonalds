@@ -74,7 +74,7 @@ public class Restaurante {
     public void tick(){
         if(!colaCliente.isEmpty()){
             if (colaCliente.getFirst().contador > 0){
-                esperar();
+
                 colaCliente.getFirst().contador--;
                 //System.out.println("contador > 0 es true siempre, linea 86 de restaurante");
             }   
@@ -85,7 +85,7 @@ public class Restaurante {
             }
         }
         //else if(colaCliente.isEmpty()) return;
-        
+        produccion.procesar(0);
         for (int j = 0; j < colaClientePendiente.size(); j++) {
            
                 esperar();
@@ -103,14 +103,8 @@ public class Restaurante {
                     }
                 }
                 
-                for (int i = 0; i < colaClientePendiente.size(); i++) {
-                    //System.out.println("Cliente:    " + colaClientePendiente.getLast().codigo);
-                    //System.out.println("cant1   " + colaClientePendiente.getLast().pedidoProductos.size());
-                
-                }
                 //System.out.println("Cliente:    " + colaClientePendiente.getLast().codigo);
                 //System.out.println("cant1   " + colaClientePendiente.getLast().pedidoProductos.size());
-                produccion.procesar(colaClientePendiente.getFirst().codigo);
                 //System.out.println("cant2   " + colaClientePendiente.getLast().pedidoProductos.size());
                 //System.out.println("");
                 

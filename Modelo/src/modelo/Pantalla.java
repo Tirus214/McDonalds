@@ -182,7 +182,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         jLabel7.setText("Ordenes Pendientes");
 
-        jButton1.setText("Siguiente Tick");
+        jButton1.setText("Siguiente");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
