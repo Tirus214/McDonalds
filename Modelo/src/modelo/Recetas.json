@@ -28,7 +28,7 @@
         "clasificacion" : "1",
         "nombre" : "Arroz cantones",
         "precio" : "2000",
-        "tiempo" : "12",
+        "tiempo" : "10",
         "tamano" : "medio"
     },
 
@@ -52,7 +52,7 @@
         "clasificacion" : "1",
         "nombre" : "Costilla",
         "precio" : "3000",
-        "tiempo" : "15",
+        "tiempo" : "13",
         "tamano" : "grande"
     }
     "receta7" : {
@@ -89,7 +89,7 @@
         "clasificacion" : "1",
         "nombre" : "Casado",
         "precio" : "2000",
-        "tiempo" : "15",
+        "tiempo" : "12",
         "tamano" : "Medio"
     }
 }
